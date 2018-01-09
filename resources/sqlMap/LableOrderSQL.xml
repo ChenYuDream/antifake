@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="LableOrderSQL">
+    <typeAlias alias="LableOrder" type="com.sinosoft.antifake.ibatis.model.LableOrder"/>
+    <resultMap id="LableOrderResult" class="LableOrder">
+        <result property="orderNo" column="order_no" jdbcType="VARCHAR" javaType="String"/>
+        <result property="plantNo" column="plant_no" jdbcType="VARCHAR" javaType="String"/>
+        <result property="labelSize" column="label_size" jdbcType="NVARCHAR" javaType="String"/>
+        <result property="count" column="count" jdbcType="INT" javaType="Integer"/>
+        <result property="createTime" column="create_time" jdbcType="DATETIME" javaType="java.util.Date"/>
+        <result property="creater" column="creater" jdbcType="NVARCHAR" javaType="String"/>
+        <result property="status" column="status" jdbcType="VARCHAR" javaType="String"/>
+        <result property="id" column="id" jdbcType="VARCHAR" javaType="String"/>
+    </resultMap>
+
+    <resultMap id="LableOrderResultFull" class="LableOrder">
+        <result property="orderNo" column="order_no" jdbcType="VARCHAR" javaType="String"/>
+        <result property="plantNo" column="plant_no" jdbcType="VARCHAR" javaType="String"/>
+        <result property="labelSize" column="label_size" jdbcType="NVARCHAR" javaType="String"/>
+        <result property="count" column="count" jdbcType="INT" javaType="Integer"/>
+        <result property="createTime" column="create_time" jdbcType="DATETIME" javaType="java.util.Date"/>
+        <result property="creater" column="creater" jdbcType="NVARCHAR" javaType="String"/>
+        <result property="status" column="status" jdbcType="VARCHAR" javaType="String"/>
+        <result property="id" column="id" jdbcType="VARCHAR" javaType="String"/>
+    </resultMap>
+
+    <insert id="addLableOrder" parameterClass="LableOrder">
+    <![CDATA[
+        insert into 
+        LABLE_ORDER (order_no,plant_no,label_size,count,create_time,creater,status)
+        values (#orderNo#,#plantNo#,#labelSize#,#count#,#createTime#,#creater#,#status#)
+	]]>
+	</insert>
+
+	<update id="updateLableOrder" parameterClass="LableOrder">
+    <![CDATA[
+        update LABLE_ORDER SET
+            plant_no = #plantNo#,label_size = #labelSize#,count = #count#,create_time = #createTime#,creater = #creater#,status = #status#
+        where order_no = #orderNo#
+    ]]>
+    </update>
+
+	<delete id="removeLableOrder">
+    <![CDATA[
+        delete from LABLE_ORDER where order_no = #orderNo#
+    ]]>
+    </delete>
+	
+	<select id="getLableOrder" resultMap="LableOrderResult">
+    <![CDATA[
+        select order_no,plant_no,label_size,count,create_time,creater,status from LABLE_ORDER where order_no = #orderNo#
+    ]]>
+    </select>
+
+	<select id="getLableOrders" resultMap="LableOrderResult">
+    <![CDATA[
+        select * from LABLE_ORDER
+    ]]>
+    </select>
+
+	<select id="getLableOrderByMap" resultMap="LableOrderResult">
+    select * from LABLE_ORDER 
+    <dynamic prepend="WHERE">
+    <isNotEmpty property="magic.FIND_BY_AND">
+    <isNotEmpty prepend="AND" property="orderNo">
+         order_no = #orderNo#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="plantNo">
+         plant_no = #plantNo#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="labelSize">
+         label_size = #labelSize#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="count">
+         count = #count#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="createTime">
+         create_time = #createTime#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="creater">
+         creater = #creater#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="status">
+         status = #status#
+    </isNotEmpty>
+    </isNotEmpty>
+
+    <isNotEmpty property="magic.FIND_BY_OR">
+    <isNotEmpty prepend="OR" property="orderNo">
+         order_no = #orderNo#
+    </isNotEmpty>
+    <isNotEmpty prepend="OR" property="plantNo">
+         plant_no = #plantNo#
+    </isNotEmpty>
+    <isNotEmpty prepend="OR" property="labelSize">
+         label_size = #labelSize#
+    </isNotEmpty>
+    <isNotEmpty prepend="OR" property="count">
+         count = #count#
+    </isNotEmpty>
+    <isNotEmpty prepend="OR" property="createTime">
+         create_time = #createTime#
+    </isNotEmpty>
+    <isNotEmpty prepend="OR" property="creater">
+         creater = #creater#
+    </isNotEmpty>
+    <isNotEmpty prepend="OR" property="status">
+         status = #status#
+    </isNotEmpty>
+    </isNotEmpty>
+
+    <isNotEmpty property="magic.FIND_BY_LIKE">
+    <isNotEmpty prepend="AND" property="orderNo">
+         order_no LIKE #orderNo#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="plantNo">
+         plant_no LIKE #plantNo#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="labelSize">
+         label_size LIKE #labelSize#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="count">
+         count LIKE #count#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="createTime">
+         create_time LIKE #createTime#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="creater">
+         creater LIKE #creater#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="status">
+         status LIKE #status#
+    </isNotEmpty>
+    </isNotEmpty>
+    </dynamic>
+	<dynamic>
+    <isNotEmpty property="magic.ORDER_BY">
+        order by $magic.ORDER_BY$
+    </isNotEmpty>
+    </dynamic>
+    </select>
+
+    <select id="getLableOrderFull" resultMap="LableOrderResultFull">
+    select * from LABLE_ORDER where order_no = #orderNo#
+    </select>
+    
+    <insert id="labelOrderBatchInsert" parameterClass="java.util.ArrayList">
+        <![CDATA[
+       insert into 
+        LABLE_ORDER (order_no,plant_no,label_size,count,create_time,creater,id)
+        ]]>
+      <iterate conjunction="UNION ALL" >
+      <![CDATA[
+          SELECT #list[].orderNo#,#list[].plantNo#,#list[].labelSize#,#list[].count#,getDate(),#list[].creater#,#list[].id#
+       ]]>
+      </iterate>
+	</insert>
+	
+    <select id="getRecipient" resultClass="java.util.HashMap">
+        select * from tblRecipient
+    </select>
+    <select id="getRecipientByName" resultClass="java.util.HashMap" parameterClass="java.util.HashMap">
+        select * from tblRecipient where recipient = #recipient#
+    </select>
+</sqlMap>

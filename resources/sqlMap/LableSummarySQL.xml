@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="LableSummarySQL">
+    <typeAlias alias="LableSummary" type="com.sinosoft.antifake.ibatis.model.LableSummary"/>
+    <resultMap id="LableSummaryResult" class="LableSummary">
+        <result property="id" column="id" jdbcType="VARCHAR" javaType="String"/>
+        <result property="orderNo" column="order_no" jdbcType="VARCHAR" javaType="String"/>
+        <result property="recipientNo" column="recipient_no" jdbcType="VARCHAR" javaType="String"/>
+        <result property="recipient" column="recipient" jdbcType="NVARCHAR" javaType="String"/>
+        <result property="expressCompany" column="express_company" jdbcType="NVARCHAR" javaType="String"/>
+        <result property="trackingNo" column="tracking_no" jdbcType="VARCHAR" javaType="String"/>
+        <result property="labelSize" column="label_size" jdbcType="NVARCHAR" javaType="String"/>
+        <result property="reelNo" column="reel_no" jdbcType="VARCHAR" javaType="String"/>
+        <result property="count" column="count" jdbcType="INT" javaType="Integer"/>
+        <result property="createTime" column="create_time" jdbcType="DATETIME" javaType="java.util.Date"/>
+        <result property="creater" column="creater" jdbcType="NVARCHAR" javaType="String"/>
+        <result property="status" column="status" jdbcType="VARCHAR" javaType="String"/>
+        <result property="receiveStatus" column="receive_status" jdbcType="VARCHAR" javaType="String"/>
+        <result property="remark" column="remark" jdbcType="NVARCHAR" javaType="String"/>
+        <result property="receiveTime" column="receive_time" jdbcType="DATETIME" javaType="java.util.Date"/>
+        <result property="receiveUser" column="receive_user" jdbcType="NVARCHAR" javaType="String"/>
+    </resultMap>
+
+    <resultMap id="LableSummaryResultFull" class="LableSummary">
+        <result property="id" column="id" jdbcType="VARCHAR" javaType="String"/>
+        <result property="orderNo" column="order_no" jdbcType="VARCHAR" javaType="String"/>
+        <result property="recipientNo" column="recipient_no" jdbcType="VARCHAR" javaType="String"/>
+        <result property="recipient" column="recipient" jdbcType="NVARCHAR" javaType="String"/>
+        <result property="expressCompany" column="express_company" jdbcType="NVARCHAR" javaType="String"/>
+        <result property="trackingNo" column="tracking_no" jdbcType="VARCHAR" javaType="String"/>
+        <result property="labelSize" column="label_size" jdbcType="NVARCHAR" javaType="String"/>
+        <result property="reelNo" column="reel_no" jdbcType="VARCHAR" javaType="String"/>
+        <result property="count" column="count" jdbcType="INT" javaType="Integer"/>
+        <result property="createTime" column="create_time" jdbcType="DATETIME" javaType="java.util.Date"/>
+        <result property="creater" column="creater" jdbcType="NVARCHAR" javaType="String"/>
+        <result property="status" column="status" jdbcType="VARCHAR" javaType="String"/>
+        <result property="receiveStatus" column="receive_status" jdbcType="VARCHAR" javaType="String"/>
+        <result property="remark" column="remark" jdbcType="NVARCHAR" javaType="String"/>
+        <result property="receiveTime" column="receive_time" jdbcType="DATETIME" javaType="java.util.Date"/>
+        <result property="receiveUser" column="receive_user" jdbcType="NVARCHAR" javaType="String"/>
+    </resultMap>
+
+    <insert id="addLableSummary" parameterClass="LableSummary">
+    <![CDATA[
+        insert into 
+        LABLE_SUMMARY (id,order_no,recipient_no,recipient,express_company,tracking_no,label_size,reel_no,count,create_time,creater,status)
+        values (#id#,#orderNo#,#recipientNo#,#recipient#,#expressCompany#,#trackingNo#,#labelSize#,#reelNo#,#count#,getDate(),#creater#,#status#)
+	]]>
+	</insert>
+
+<update id="updateLableSummary" parameterClass="LableSummary">
+    <![CDATA[
+        update LABLE_SUMMARY SET
+            order_no = #orderNo#,recipient_no = #recipientNo#,recipient = #recipient#,express_company = #expressCompany#,tracking_no = #trackingNo#,label_size = #labelSize#,reel_no = #reelNo#,count = #count#,create_time = #createTime#,creater = #creater#,status = #status#,receive_status = #receiveStatus#,remark = #remark#,receive_time = #receiveTime#,receive_user = #receiveUser#
+        where id = #id#
+    ]]>
+    </update>
+
+	<delete id="removeLableSummary">
+    <![CDATA[
+        delete from LABLE_SUMMARY where id = #id#
+    ]]>
+    </delete>
+	
+	<select id="getLableSummary" resultMap="LableSummaryResult">
+    <![CDATA[
+        select id,order_no,recipient_no,recipient,express_company,tracking_no,label_size,reel_no,count,create_time,creater,status,receive_status,remark,receive_time,receive_user from LABLE_SUMMARY where id = #id#
+    ]]>
+    </select>
+
+	<select id="getLableSummarys" resultMap="LableSummaryResult">
+    <![CDATA[
+        select * from LABLE_SUMMARY
+    ]]>
+    </select>
+
+	<select id="getLableSummaryByMap" resultMap="LableSummaryResult">
+    select * from LABLE_SUMMARY 
+    <dynamic prepend="WHERE">
+    <isNotEmpty property="magic.FIND_BY_AND">
+    <isNotEmpty prepend="AND" property="id">
+         id = #id#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="orderNo">
+         order_no = #orderNo#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="recipientNo">
+         recipient_no = #recipientNo#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="recipient">
+         recipient = #recipient#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="expressCompany">
+         express_company = #expressCompany#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="trackingNo">
+         tracking_no = #trackingNo#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="labelSize">
+         label_size = #labelSize#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="reelNo">
+         reel_no = #reelNo#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="count">
+         count = #count#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="createTime">
+         create_time = #createTime#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="creater">
+         creater = #creater#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="status">
+         status = #status#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="receiveStatus">
+         receive_status = #receiveStatus#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="remark">
+         remark = #remark#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="receiveTime">
+         receive_time = #receiveTime#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="receiveUser">
+         receive_user = #receiveUser#
+    </isNotEmpty>
+    </isNotEmpty>
+
+    <isNotEmpty property="magic.FIND_BY_OR">
+    <isNotEmpty prepend="OR" property="id">
+         id = #id#
+    </isNotEmpty>
+    <isNotEmpty prepend="OR" property="orderNo">
+         order_no = #orderNo#
+    </isNotEmpty>
+    <isNotEmpty prepend="OR" property="recipientNo">
+         recipient_no = #recipientNo#
+    </isNotEmpty>
+    <isNotEmpty prepend="OR" property="recipient">
+         recipient = #recipient#
+    </isNotEmpty>
+    <isNotEmpty prepend="OR" property="expressCompany">
+         express_company = #expressCompany#
+    </isNotEmpty>
+    <isNotEmpty prepend="OR" property="trackingNo">
+         tracking_no = #trackingNo#
+    </isNotEmpty>
+    <isNotEmpty prepend="OR" property="labelSize">
+         label_size = #labelSize#
+    </isNotEmpty>
+    <isNotEmpty prepend="OR" property="reelNo">
+         reel_no = #reelNo#
+    </isNotEmpty>
+    <isNotEmpty prepend="OR" property="count">
+         count = #count#
+    </isNotEmpty>
+    <isNotEmpty prepend="OR" property="createTime">
+         create_time = #createTime#
+    </isNotEmpty>
+    <isNotEmpty prepend="OR" property="creater">
+         creater = #creater#
+    </isNotEmpty>
+    <isNotEmpty prepend="OR" property="status">
+         status = #status#
+    </isNotEmpty>
+    <isNotEmpty prepend="OR" property="receiveStatus">
+         receive_status = #receiveStatus#
+    </isNotEmpty>
+    <isNotEmpty prepend="OR" property="remark">
+         remark = #remark#
+    </isNotEmpty>
+    <isNotEmpty prepend="OR" property="receiveTime">
+         receive_time = #receiveTime#
+    </isNotEmpty>
+    <isNotEmpty prepend="OR" property="receiveUser">
+         receive_user = #receiveUser#
+    </isNotEmpty>
+    </isNotEmpty>
+
+    <isNotEmpty property="magic.FIND_BY_LIKE">
+    <isNotEmpty prepend="AND" property="id">
+         id LIKE #id#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="orderNo">
+         order_no LIKE #orderNo#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="recipientNo">
+         recipient_no LIKE #recipientNo#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="recipient">
+         recipient LIKE #recipient#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="expressCompany">
+         express_company LIKE #expressCompany#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="trackingNo">
+         tracking_no LIKE #trackingNo#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="labelSize">
+         label_size LIKE #labelSize#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="reelNo">
+         reel_no LIKE #reelNo#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="count">
+         count LIKE #count#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="createTime">
+         create_time LIKE #createTime#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="creater">
+         creater LIKE #creater#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="status">
+         status LIKE #status#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="receiveStatus">
+         receive_status LIKE #receiveStatus#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="remark">
+         remark LIKE #remark#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="receiveTime">
+         receive_time LIKE #receiveTime#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="receiveUser">
+         receive_user LIKE #receiveUser#
+    </isNotEmpty>
+    </isNotEmpty>
+    </dynamic>
+	<dynamic>
+    <isNotEmpty property="magic.ORDER_BY">
+        order by $magic.ORDER_BY$
+    </isNotEmpty>
+    </dynamic>
+    </select>
+
+    <select id="getLableSummaryFull" resultMap="LableSummaryResultFull">
+    select * from LABLE_SUMMARY where id = #id#
+    </select>
+    
+   <update id="addDataStatus" parameterClass="LableSummary">
+    <![CDATA[
+        update LABLE_SUMMARY SET
+            receive_status=#receiveStatus#,remark=#remark#,receive_user=#receiveUser#,receive_time=getDate() 
+        where order_no=#orderNo# and express_company=#expressCompany# and tracking_no=#trackingNo# and reel_no=#reelNo#
+    ]]>
+    </update>
+    
+   <insert id="labelSummaryBatchInsert" parameterClass="java.util.ArrayList">
+       <![CDATA[
+       insert into 
+        LABLE_SUMMARY (id,order_no,recipient_no,recipient,express_company,tracking_no,label_size,reel_no,count,create_time,creater,status,receive_status)
+        ]]>
+      <iterate conjunction="UNION ALL" >
+      <![CDATA[
+          SELECT #list[].id#,#list[].orderNo#,#list[].recipientNo#,#list[].recipient#,#list[].expressCompany#,#list[].trackingNo#,#list[].labelSize#,#list[].reelNo#,#list[].count#,getDate(),#list[].creater#,#list[].status#,#list[].receiveStatus#
+          ]]>
+      </iterate>
+	</insert>
+	
+   <insert id="labelSummaryInsert" parameterClass="java.util.HashMap">
+       <![CDATA[
+       insert into 
+        LABLE_SUMMARY (id,order_no,recipient_no,recipient,express_company,tracking_no,label_size,reel_no,count,create_time,creater,status,receive_status)
+          values (#id#,#orderNo#,#recipientNo#,#recipient#,#expressCompany#,#trackingNo#,#labelSize#,#reelNo#,#count#,getDate(),#creater#,#status#,#receiveStatus#)
+          ]]>
+	</insert> 
+</sqlMap>

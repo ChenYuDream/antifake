@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="LabelScrapSQL">
+    <typeAlias alias="LabelScrap" type="com.sinosoft.antifake.ibatis.model.LabelScrap"/>
+    <resultMap id="LabelScrapResult" class="LabelScrap">
+        <result property="serialNumber" column="serial_number" jdbcType="VARCHAR" javaType="String"/>
+        <result property="scrapType" column="scrap_type" jdbcType="VARCHAR" javaType="String"/>
+        <result property="scrapRemark" column="scrap_remark" jdbcType="NVARCHAR" javaType="String"/>
+        <result property="scrapTime" column="scrap_time" jdbcType="DATETIME" javaType="java.util.Date"/>
+        <result property="approveTime" column="approve_time" jdbcType="DATETIME" javaType="java.util.Date"/>
+        <result property="scraper" column="scraper" jdbcType="VARCHAR" javaType="String"/>
+        <result property="id" column="id" jdbcType="VARCHAR" javaType="String"/>
+        <result property="status" column="status" jdbcType="VARCHAR" javaType="String"/>
+    </resultMap>
+
+    <resultMap id="LabelScrapResultFull" class="LabelScrap">
+        <result property="serialNumber" column="serial_number" jdbcType="VARCHAR" javaType="String"/>
+        <result property="scrapType" column="scrap_type" jdbcType="VARCHAR" javaType="String"/>
+        <result property="scrapRemark" column="scrap_remark" jdbcType="NVARCHAR" javaType="String"/>
+        <result property="scrapTime" column="scrap_time" jdbcType="DATETIME" javaType="java.util.Date"/>
+        <result property="approveTime" column="approve_time" jdbcType="DATETIME" javaType="java.util.Date"/>
+        <result property="scraper" column="scraper" jdbcType="VARCHAR" javaType="String"/>
+        <result property="id" column="id" jdbcType="VARCHAR" javaType="String"/>
+        <result property="status" column="status" jdbcType="VARCHAR" javaType="String"/>
+    </resultMap>
+
+    <insert id="addLabelScrap" parameterClass="LabelScrap">
+    <![CDATA[
+        insert into 
+        LABle_SCRAP (serial_number,scrap_type,scrap_remark,scrap_time,scraper,id)
+        values (#serialNumber#,#scrapType#,#scrapRemark#,getDate(),#scraper#,#id#)
+	]]>
+	</insert>
+
+	<update id="updateLabelScrap" parameterClass="LabelScrap">
+    <![CDATA[
+        update LABEL_SCRAP SET
+            scrap_type = #scrapType#,scrap_remark = #scrapRemark#,scrap_time = #scrapTime#,approve_time = #approveTime#,scraper = #scraper#
+        where serial_number = #serialNumber#
+    ]]>
+    </update>
+
+	<delete id="removeLabelScrap">
+    <![CDATA[
+        delete from LABEL_SCRAP where serial_number = #serialNumber#
+    ]]>
+    </delete>
+	
+	<select id="getLabelScrap" resultMap="LabelScrapResult">
+    <![CDATA[
+        select serial_number,scrap_type,scrap_remark,scrap_time,approve_time,scraper from LABEL_SCRAP where serial_number = #serialNumber#
+    ]]>
+    </select>
+
+	<select id="getLabelScraps" resultMap="LabelScrapResult">
+    <![CDATA[
+        select * from LABEL_SCRAP
+    ]]>
+    </select>
+
+	<select id="getLabelScrapByMap" resultMap="LabelScrapResult">
+    select * from LABEL_SCRAP 
+    <dynamic prepend="WHERE">
+    <isNotEmpty property="magic.FIND_BY_AND">
+    <isNotEmpty prepend="AND" property="serialNumber">
+         serial_number = #serialNumber#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="scrapType">
+         scrap_type = #scrapType#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="scrapRemark">
+         scrap_remark = #scrapRemark#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="scrapTime">
+         scrap_time = #scrapTime#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="approveTime">
+         approve_time = #approveTime#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="scraper">
+         scraper = #scraper#
+    </isNotEmpty>
+    </isNotEmpty>
+
+    <isNotEmpty property="magic.FIND_BY_OR">
+    <isNotEmpty prepend="OR" property="serialNumber">
+         serial_number = #serialNumber#
+    </isNotEmpty>
+    <isNotEmpty prepend="OR" property="scrapType">
+         scrap_type = #scrapType#
+    </isNotEmpty>
+    <isNotEmpty prepend="OR" property="scrapRemark">
+         scrap_remark = #scrapRemark#
+    </isNotEmpty>
+    <isNotEmpty prepend="OR" property="scrapTime">
+         scrap_time = #scrapTime#
+    </isNotEmpty>
+    <isNotEmpty prepend="OR" property="approveTime">
+         approve_time = #approveTime#
+    </isNotEmpty>
+    <isNotEmpty prepend="OR" property="scraper">
+         scraper = #scraper#
+    </isNotEmpty>
+    </isNotEmpty>
+
+    <isNotEmpty property="magic.FIND_BY_LIKE">
+    <isNotEmpty prepend="AND" property="serialNumber">
+         serial_number LIKE #serialNumber#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="scrapType">
+         scrap_type LIKE #scrapType#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="scrapRemark">
+         scrap_remark LIKE #scrapRemark#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="scrapTime">
+         scrap_time LIKE #scrapTime#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="approveTime">
+         approve_time LIKE #approveTime#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="scraper">
+         scraper LIKE #scraper#
+    </isNotEmpty>
+    </isNotEmpty>
+    </dynamic>
+	<dynamic>
+    <isNotEmpty property="magic.ORDER_BY">
+        order by $magic.ORDER_BY$
+    </isNotEmpty>
+    </dynamic>
+    </select>
+
+    <select id="getLabelScrapFull" resultMap="LabelScrapResultFull">
+    select * from LABEL_SCRAP where serial_number = #serialNumber#
+    </select>
+</sqlMap>

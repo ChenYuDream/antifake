@@ -1,0 +1,63 @@
+/* header */
+#header {
+	margin-bottom:15px;
+	color: #658A16; 
+	border-bottom: 2px solid #658A16;
+	
+}
+
+/* #header h1 {
+	float: left;
+}
+#header small {
+	text-align: right;
+} 
+*/
+.row{
+min-height:600px;
+_height:600px;
+}
+
+#contentTable th{
+	background: #5fba58;
+	color: #fff;
+	text-align: center;
+}
+
+/* footer */
+#footer {
+	margin-top: 15px;
+	padding: 15px 0px 0px 0px;
+	font-size: 95%;
+	text-align: center;
+	border-top: 2px solid #658A16;
+}
+
+#footer a {color: #999;}
+
+/* pagination */
+.pagination {
+	text-align: right;
+}
+
+/* excel */
+.excelDiv {
+	text-align: right;
+}
+
+.container {
+	width: 1170px;
+}
+.span12{
+	float:right;
+}
+.nav{
+	margin-top:90px;
+}
+.nav li{
+	margin-bottom:20px;
+	margin-left:45px;
+ }
+ .nav li button{
+	width:150px;
+ }

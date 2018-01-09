@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Schneider Electric</title>
+	<link rel="stylesheet" type="text/css" href="../styles/web.css"/>
+	<script src="demos/js/jquery.js"></script>
+	<script type="text/javascript">
+		$(function(){
+		  	$(".to_hidden").hide();
+			$("#submit_input").click(function(){
+				var typeValue = $("#change_type").val();
+				if('0' == typeValue) return;
+				location.href = "result_"+typeValue+".html";
+			});
+			$("#change_type").change(function(){
+				var typeValue = $(this).val();
+				$(".to_hidden").hide();
+				$("#h_"+typeValue).show();
+			});
+		});
+	</script>
+</head>
+<body>
+	<h2>防伪码查询平台</h2>
+	<table width="100%" border="0" cellpadding="0" cellspacing="0">
+		<tr>
+			<td>
+				<label>防伪码:</label>
+				<input type="text" /><span class="required">*</span>
+			</td>
+		</tr>
+		<tr>
+			<td >
+				<label>手机号码:</label><input type="text" />
+				<span class="required">*</span>
+				<div class="required">
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<label>客户姓名:</label>
+				<input type="text" />
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<label>验证码:</label>
+				<input type="text" /><span class="required">*</span>
+				<span><img style="vertical-align:bottom;" src="/images/web/v_1.png" /></span>
+				<a id="get_another" href="#" > 看不清楚，换一张 </a>
+			</td>
+		</tr>
+		<tr>
+			<td align="center" >
+			<a href="#" id="submit_input"><img src="/images/web/bot.gif" width="88" height="26" border="0" /></a>
+			</td>
+		</tr>
+	</table>
+	
+	<div>
+	尊敬的客户，您好！
+		 <p >
+		 	感谢您对施耐德产品的支持。您所查询的防伪码对应的产品型号为【XXX】，已被查询过<strong class="required"> 2 </strong>次。
+		 	为谨防假冒，建议您自检以获得更准确的结果（点击<a id="a_help" href="#"> 此处 </a>自检）。
+		 	如有疑问，请拨打我们的热线电话获得支持：4008101315。
+		 </p>
+	</div>	
+</body>
+</html>

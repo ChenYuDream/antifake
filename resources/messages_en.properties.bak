@@ -1,0 +1,102 @@
+﻿antifake.web.title=Schneider-Electric Security Code Checking System
+antifake.web.local=en
+antifake.web.title1=Schneider-Electric Security Code Checking System
+
+antifake.mobile.title=Schneider-Electric Security Code Checking System
+antifake.mobile.changeLanCode=cn
+antifake.mobile.changeLanName=中文
+
+#web main
+antifake.main.ios.dowload=IOS 6.0 or later
+antifake.main.android.dowload=Android 2.3 or later
+
+#index page
+antifake.index.android=android
+antifake.index.ios=ios
+antifake.index.query=skip
+antifake.index.redpoint=<p><span style="color:red">Scan to download</span></p>
+antifake.index.top=<p>Welcome to use Schneider-Electric Anti-Fake Check system, you can download mobile client by the following way:</p>
+antifake.index.bottom1=<p style="text-indent:0;padding:0px;">System:</P><p style="text-indent:0;padding:0px;">above Android2.3</p>
+antifake.index.bottom2=<p style="text-indent:0;padding:0px;">&nbsp;</p><p style="padding:0px;text-indent:0;">above IOS5.0</p>
+antifake.index.androidTip=<h3 style="font-weight:blod">Tips</h3>
+antifake.index.androidTipOne=<p style\="text-indent\:0;padding\:0px;">1.When scanning with Wechat?please click the menu on the top right hand and choose open in browser</p>
+antifake.index.androidTipTwo=<p style="text-indent:0;padding:0px;">2.Open the page in browser and click Download  </p>
+antifake.index.title_new=Schneider Electric Anti-fake Check
+antifake.index.scan_desc=Scan QR Code,follow SE official account
+antifake.index.scan_enter=Go to “产品方案”->“我的设备”->“真伪校验”
+
+#form page
+antifake.form.lableNo=Security Code
+antifake.form.userName=Customer Name
+antifake.form.phoneNo=Mobile Number
+antifake.form.kaptcha=Verification Code
+antifake.form.submit=Check
+antifake.form.help=How to search Security Code
+antifake.form.required=Required
+antifake.form.required12=Required 12 chars
+antifake.form.anotherPic=Another Picture 
+antifake.form.scan=Scan
+
+
+#result page 
+antifake.result.scan_fake=<p><span style="font-size:40px;font-family:黑体;font-weight:800;color:#f9960b" >仿冒！</span></p>
+antifake.result.scan_fake_1=<p><span style="font-weight:bold">抱歉，你所查询的防伪码已被仿冒！<br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;请拨打热线&nbsp;<a class="webNoUnderLine" href="tel:4008101315" style="color:green;">4008101315</a>&nbsp;&nbsp;协助维权。</span></p>
+antifake.result.scan_method=<span style="color:green">如下方式扫描二维码</span>
+antifake.result.scan_example=<span>示例图中为SE防伪码的正确扫描方式，请确认是否已按要求正确扫描？</span>
+antifake.result.rescan=重新扫描
+antifake.result.scanok=扫描正确
+
+
+
+
+#report page
+antifake.report.userName=Customer Name
+antifake.report.phoneNo=Mobile Number
+antifake.report.buyaddress=Supplier?s address
+antifake.report.salesName=Supplier?s name
+antifake.report.salesPhone=Supplier?s phone number
+antifake.report.productLine=Product Model
+antifake.report.amount=Total value(RMB)
+antifake.report.comments=comments
+antifake.report.state=state
+antifake.report.noneoption=please select
+antifake.report.submit=Submit
+antifake.report.title=Report a suspected counterfeit
+antifake.report.required=Required
+antifake.report.required1=Input  here
+antifake.report.required2=Input  here
+antifake.report.required3=Input  here
+antifake.report.required4=Input  here
+
+#result page 
+antifake.result.title=Result
+antifake.result.more=Check another one
+antifake.result.fake=Report a suspected counterfeit
+antifake.check.title=Self-check Help
+antifake.check.back=Back
+
+antifake.result.proposal.part1=
+antifake.result.proposal.part2=Self-check
+antifake.result.proposal.part3=is highly recommended for more accurate results.
+
+antifake.mobile.result1.line1=<p>The Security Code<b> <span id="resultId1"></span> </b><b class="green">exists, which is the <span id="resultQueryId"></span> check</b>.</p>
+antifake.mobile.result1.line2=<p>Please call <a class="webNoUnderLine" href="tel:4008101315" style="color:green;">4008101315</a> for support.</p>
+
+antifake.mobile.result2.line1=<p>The Security Code<b> <span id="resultId2"></span></b>&nbsp;you entered has been checked<b class="orange">&nbsp;over 10 times</b>.</p>
+
+antifake.mobile.result3.line1=<p>The Security Code<b> <span id="resultId3"></span></b>&nbsp;you entered does&nbsp;<b class="red">not exist </b>.</p>
+antifake.mobile.result3.line2=<p><a class="selfCheck" href="#" style="color:green;">Self-check</a> is highly recommended for more accurate results.Please dial <a class="webNoUnderLine" href="tel:4008101315" style="color:green;">4008101315</a> for support.</p>
+
+antifake.web.result.proposal=<p><a href="#" class="green selfCheck" style="color:green;">Self-check</a> is highly recommended for more accurate results.</p>
+
+antifake.web.result.Rline1=<p>Your report has been submitted. Thank  you for your support on genuine Schneider Electric product!</p>
+antifake.web.result.Rline2=<p>Any inquiry, please contact us by phone <a class="webNoUnderLine" href="tel:4008101315" style="color:green;">4008101315</a>.</p>
+
+antifake.mobile.result.Rline1=<p>Your report has been submitted. Thank  you for your support on genuine Schneider Electric product!</p>
+antifake.mobile.result.Rline2=<p>Any inquiry, please contact us by phone <a class="webNoUnderLine" href="tel:4008101315" style="color:green;">4008101315</a>.</p>
+
+
+
+
+
+

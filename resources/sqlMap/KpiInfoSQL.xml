@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="KpiInfoSQL">
+    <typeAlias alias="KpiInfo" type="com.sinosoft.antifake.ibatis.model.KpiInfo"/>
+    <resultMap id="KpiInfoResult" class="KpiInfo">
+        <result property="spcialNo" column="spcial_no" jdbcType="VARCHAR" javaType="String"/>
+        <result property="state" column="state" jdbcType="VARCHAR" javaType="String"/>
+        <result property="count" column="count" jdbcType="INT" javaType="Integer"/>
+        <result property="uploadedCount" column="uploaded_count" jdbcType="INT" javaType="Integer"/>
+        <result property="timelyCount" column="timely_count" jdbcType="INT" javaType="Integer"/>
+        <result property="productDate" column="product_date" jdbcType="DATETIME" javaType="java.util.Date"/>
+        <result property="createTime" column="create_time" jdbcType="DATETIME" javaType="java.util.Date"/>
+        <result property="plantNo" column="plant_no" jdbcType="VARCHAR" javaType="String"/>
+    </resultMap>
+
+    <resultMap id="KpiInfoResultFull" class="KpiInfo">
+        <result property="spcialNo" column="spcial_no" jdbcType="VARCHAR" javaType="String"/>
+        <result property="state" column="state" jdbcType="VARCHAR" javaType="String"/>
+        <result property="count" column="count" jdbcType="INT" javaType="Integer"/>
+        <result property="uploadedCount" column="uploaded_count" jdbcType="INT" javaType="Integer"/>
+        <result property="timelyCount" column="timely_count" jdbcType="INT" javaType="Integer"/>
+        <result property="productDate" column="product_date" jdbcType="DATETIME" javaType="java.util.Date"/>
+        <result property="createTime" column="create_time" jdbcType="DATETIME" javaType="java.util.Date"/>
+        <result property="plantNo" column="plant_no" jdbcType="VARCHAR" javaType="String"/>
+    </resultMap>
+
+    <insert id="addKpiInfo" parameterClass="KpiInfo">
+    <![CDATA[
+        insert into 
+        KPI_INFO (spcial_no,state,count,uploaded_count,timely_count,product_date,create_time,plant_no)
+        values (#spcialNo#,#state#,#count#,#uploadedCount#,#timelyCount#,#productDate#,#createTime#,#plantNo#)
+	]]>
+	</insert>
+
+	<update id="updateKpiInfo" parameterClass="KpiInfo">
+    <![CDATA[
+        update KPI_INFO SET
+            state = #state#,count = #count#,uploaded_count = #uploadedCount#,timely_count = #timelyCount#,product_date = #productDate#,create_time = #createTime#,plant_no = #plantNo#
+        where spcial_no = #spcialNo#
+    ]]>
+    </update>
+
+	<delete id="removeKpiInfo">
+    <![CDATA[
+        delete from KPI_INFO where spcial_no = #spcialNo#
+    ]]>
+    </delete>
+	
+	<select id="getKpiInfo" resultMap="KpiInfoResult">
+    <![CDATA[
+        select spcial_no,state,count,uploaded_count,timely_count,product_date,create_time,plant_no from KPI_INFO where spcial_no = #spcialNo#
+    ]]>
+    </select>
+
+	<select id="getKpiInfos" resultMap="KpiInfoResult">
+    <![CDATA[
+        select * from KPI_INFO
+    ]]>
+    </select>
+
+	<select id="getKpiInfoByMap" resultMap="KpiInfoResult">
+    select * from KPI_INFO 
+    <dynamic prepend="WHERE">
+    <isNotEmpty property="magic.FIND_BY_AND">
+    <isNotEmpty prepend="AND" property="spcialNo">
+         spcial_no = #spcialNo#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="state">
+         state = #state#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="count">
+         count = #count#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="uploadedCount">
+         uploaded_count = #uploadedCount#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="timelyCount">
+         timely_count = #timelyCount#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="productDate">
+         product_date = #productDate#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="createTime">
+         create_time = #createTime#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="plantNo">
+         plant_no = #plantNo#
+    </isNotEmpty>
+    </isNotEmpty>
+
+    <isNotEmpty property="magic.FIND_BY_OR">
+    <isNotEmpty prepend="OR" property="spcialNo">
+         spcial_no = #spcialNo#
+    </isNotEmpty>
+    <isNotEmpty prepend="OR" property="state">
+         state = #state#
+    </isNotEmpty>
+    <isNotEmpty prepend="OR" property="count">
+         count = #count#
+    </isNotEmpty>
+    <isNotEmpty prepend="OR" property="uploadedCount">
+         uploaded_count = #uploadedCount#
+    </isNotEmpty>
+    <isNotEmpty prepend="OR" property="timelyCount">
+         timely_count = #timelyCount#
+    </isNotEmpty>
+    <isNotEmpty prepend="OR" property="productDate">
+         product_date = #productDate#
+    </isNotEmpty>
+    <isNotEmpty prepend="OR" property="createTime">
+         create_time = #createTime#
+    </isNotEmpty>
+    <isNotEmpty prepend="OR" property="plantNo">
+         plant_no = #plantNo#
+    </isNotEmpty>
+    </isNotEmpty>
+
+    <isNotEmpty property="magic.FIND_BY_LIKE">
+    <isNotEmpty prepend="AND" property="spcialNo">
+         spcial_no LIKE #spcialNo#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="state">
+         state LIKE #state#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="count">
+         count LIKE #count#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="uploadedCount">
+         uploaded_count LIKE #uploadedCount#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="timelyCount">
+         timely_count LIKE #timelyCount#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="productDate">
+         product_date LIKE #productDate#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="createTime">
+         create_time LIKE #createTime#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="plantNo">
+         plant_no LIKE #plantNo#
+    </isNotEmpty>
+    </isNotEmpty>
+    </dynamic>
+	<dynamic>
+    <isNotEmpty property="magic.ORDER_BY">
+        order by $magic.ORDER_BY$
+    </isNotEmpty>
+    </dynamic>
+    </select>
+
+    <select id="getKpiInfoFull" resultMap="KpiInfoResultFull">
+    select * from KPI_INFO where spcial_no = #spcialNo#
+    </select>
+    
+    <update id="update_kpi_count" parameterClass="java.util.HashMap">
+        update KPI_INFO set count=#count#,product_date=#product_date#
+        where spcial_no=#spcial_no#
+    </update>
+    
+    <insert id="kpiInfoBatchInsert" parameterClass="java.util.ArrayList">
+         <![CDATA[
+        insert into 
+        KPI_INFO (spcial_no,state,count,uploaded_count,timely_count,product_date,create_time,plant_no)
+         ]]>
+        <iterate conjunction="UNION ALL">
+         <![CDATA[
+           SELECT  #list[].spcial_no#,#list[].state#,#list[].count#,#list[].uploaded_count#,#list[].timely_count#,#list[].product_date#,getDate(),#list[].plant_no#
+         ]]>
+        </iterate>
+    </insert>
+    
+    <select id="countKpiInfoOfUploadedCount" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+        select k.spcial_no,count(s.SNO_BARNO) as uploadedCount from tblSerialNumber s
+		left join kpi_info k 
+		on s.SNO_PRODUCTIONORDER = k.spcial_no or s.SNO_PRODUCTIONORDER like k.spcial_no +'-%'
+		<dynamic prepend="WHERE">
+		    <isNotEmpty property="plantNo" prepend="AND">
+		        k.plant_no = #plantNo#
+				and k.uploaded_count <![CDATA[ < ]]> k.count
+				group by k.spcial_no
+		    </isNotEmpty>
+		    <isNotEmpty property="spcialNo" prepend="AND">
+		        k.spcial_no = #spcialNo#
+		        group by k.spcial_no
+		    </isNotEmpty>
+		</dynamic>
+    </select>
+    
+    <select id="countKpiInfoOfTimelyCount" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+        select k.spcial_no,count(s.SNO_BARNO) as timelyCount from tblSerialNumber s
+		left join kpi_info k 
+		on s.SNO_PRODUCTIONORDER = k.spcial_no or s.SNO_PRODUCTIONORDER like k.spcial_no +'-%'
+		<dynamic prepend="WHERE">
+		    <isNotEmpty property="plantNo" prepend="AND">
+		       k.plant_no = #plantNo# 
+			   and DATEDIFF ([hour], s.SNO_CREATEDATE, s.SNO_MODIFYDATE) <![CDATA[<= ]]>24
+			   group by k.spcial_no
+		    </isNotEmpty>
+		    <isNotEmpty property="spcialNo" prepend="AND">
+		        k.spcial_no = #spcialNo#
+		        and DATEDIFF ([hour], s.SNO_CREATEDATE, s.SNO_MODIFYDATE) <![CDATA[<= ]]>24
+		        group by k.spcial_no
+		    </isNotEmpty>
+		</dynamic>
+    </select>
+    
+    <update id="updateUploadedCountBySpecialNo" parameterClass="java.util.HashMap">
+        update kpi_info set uploaded_count = #uploadedCount# where spcial_no = #spcialNo#
+    </update>
+    
+    <update id="updateTimelyCountBySpecialNo" parameterClass="java.util.HashMap">
+        update kpi_info set timely_count = #timelyCount# where spcial_no = #spcialNo#
+    </update>
+</sqlMap>

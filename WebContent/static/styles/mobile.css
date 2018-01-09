@@ -1,0 +1,31 @@
+@charset "UTF-8";
+/* CSS Document */
+
+/*Mobile start*/
+
+/* fixed闪屏 
+*/
+
+.red {color: red;} 
+.green {color: green;} 
+.orange {color: orange;}
+
+
+
+p{text-indent:2em; }
+/*表头显示多字符*/
+.ui-header .ui-title, .ui-footer .ui-title { min-height: 1.1em; text-align: center; font-size: 16px; display: block; margin: .6em 20% .8em;  padding: 0;  text-overflow: ellipsis; overflow: hidden; white-space: nowrap; outline: 0 !important; }
+
+td{
+	padding-bottom:10px;
+}
+
+#selfCheckImg {
+	width:100%; 
+}
+
+.resultFooter {
+	margin: 15px 0 0 0;
+}
+
+/*Mobile end*/

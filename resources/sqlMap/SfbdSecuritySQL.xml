@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="SfbdSecuritySQL">
+<typeAlias alias="SfbdSecurity" type="com.sinosoft.antifake.ibatis.model.SfbdSecurity"/>
+    <resultMap id="SfbdSecurityResult" class="SfbdSecurity">
+        <result property="id" column="id" jdbcType="VARCHAR" javaType="String"/>
+        <result property="createDate" column="create_date" jdbcType="VARCHAR" javaType="String"/>
+        <result property="barcode" column="barcode" jdbcType="VARCHAR" javaType="String"/>
+        <result property="productCode" column="product_code" jdbcType="VARCHAR" javaType="String"/>
+        <result property="companyCode" column="company_code" jdbcType="VARCHAR" javaType="String"/>
+        <result property="creater" column="creater" jdbcType="VARCHAR" javaType="String"/>
+        <result property="batchNo" column="batch_no" jdbcType="VARCHAR" javaType="String"/>
+    </resultMap> 
+    
+    <!--add by wangxueqiang 上传数据处理  start -->
+    <insert id="SfbdSecurityByBatchInsert" parameterClass="java.util.ArrayList">
+         <![CDATA[
+        insert into 
+        tbl_sfbd_security (id,create_date,barcode,product_code,company_code,creater,batch_no)
+         ]]>
+        <iterate conjunction="UNION ALL">
+         <![CDATA[
+           SELECT  #list[].id#,#list[].createDate#,#list[].barcode#,#list[].productCode#,#list[].companyCode#,#list[].creater#,#list[].batchNo#
+         ]]>
+        </iterate>
+    </insert>
+    <!--add by wangxueqiang 上传数据处理  end -->
+    
+     <!--add by wangxueqiang 根据产品查询  start -->
+    <select id="findByProductCode" resultMap="SfbdSecurityResult">
+	    <![CDATA[
+	        select product_code,company_code,barcode,batch_no,id,creater,create_date
+            from tbl_sfbd_security where product_code = #productCode#
+	    ]]>
+    </select>
+    <!--add by wangxueqiang 根据产品查询  end -->
+</sqlMap>

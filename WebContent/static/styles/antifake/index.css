@@ -1,0 +1,142 @@
+@charset "UTF-8";
+/*  demo页面
+  * time:2017-12-21
+  * author:yueqin_xu(1336793043@qq.com)
+*/
+body {
+    /*padding-left: 220px;*/
+}
+.headBox {
+    width: 100%;
+    margin-right: 20px;
+    background-color: #fff;
+    border-bottom: 3px solid #658A16;
+}
+
+
+.headBox .headtitle {
+    margin: 15px 20px;
+    font-size: 30px;
+    line-height: 40px;
+    font-weight: 700;
+    color: #658A16;
+}
+
+
+.leftMenu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 3;
+    width: 200px;
+    height: 100%;
+    padding-top: 120px;
+    background-color: #fbfbfb;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.3);
+}
+
+.leftMenu ul li a {
+    display: block;
+    padding-left: 5px;
+    border-bottom: 1px dashed #ddd;
+    font-size: 16px;
+    color: #333;
+    line-height: 48px;
+    text-decoration: none;
+}
+
+.leftMenu ul li a i {
+    display: inline-block;
+    width: 40px;
+    height: 48px;
+    font-size: 20px;
+    line-height: 48px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.leftMenu ul li a span {
+    vertical-align: middle;
+}
+
+.leftMenu ul li.active {
+    background-color: #5FBA58;
+}
+
+.leftMenu ul li.active a {
+    color: #fff;
+}
+
+.mainbox {
+    position: relative;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    padding-top: 30px;
+    width: 100%;
+    height: 100%;
+}
+
+.mainbox .maincont-tit {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    font-size: 24px;
+    font-weight: 300;
+    text-align: center;
+}
+
+
+.mainbox .miaTable table {
+    border: 1px solid #ddd;
+}
+
+.mainbox .miaTable table th {
+    border: 1px solid #ddd;
+    padding: 5px 10px;
+    background-color: #5FBA58;
+    text-align: left;
+}
+
+.mainbox .miaTable table td {
+    padding: 5px;
+    border: 1px solid #ddd;
+    text-align: left;
+    background-color: #F5F5F5;
+}
+.colorRed {
+    color:red;
+}
+/*# sourceMappingURL=index.css.map */
+.btnWrap {
+    text-align: center;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+.btnWrap .btn {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+.btn-submit {
+    background-color:#5FBA58; 
+    color: #fff
+}
+.btn-submit {
+    color: #FFF;
+    background-color: #5FBA58;
+    border-color: #5FBA58
+}
+
+.btn-submit:hover, .btn-submit:focus, .btn-submit.focus, .btn-submit:active, .btn-submit.active, .open > .btn-submit.dropdown-toggle {
+    color: #FFF;
+    background-color: #5FBA58;
+    border-color: #5FBA58
+}
+
+.btn-submit:active, .btn-submit.active, .open > .btn-submit.dropdown-toggle {
+    background-image: none
+}
+
+.btn-submit.disabled, .btn-submit.disabled:hover, .btn-submit.disabled:focus, .btn-submit.disabled.focus, .btn-submit.disabled:active, .btn-submit.disabled.active, .btn-submit[disabled], .btn-submit[disabled]:hover, .btn-submit[disabled]:focus, .btn-submit[disabled].focus, .btn-submit[disabled]:active, .btn-submit[disabled].active, fieldset[disabled] .btn-submit, fieldset[disabled] .btn-submit:hover, fieldset[disabled] .btn-submit:focus, fieldset[disabled] .btn-submit.focus, fieldset[disabled] .btn-submit:active, fieldset[disabled] .btn-submit.active {
+    background-color: #fff;
+    border-color: #ccc
+}

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMapConfig PUBLIC "-//ibatis.apache.org//DTD SQL Map Config 2.0//EN"
+        "http://ibatis.apache.org/dtd/sql-map-config-2.dtd">
+
+<sqlMapConfig>
+    <!-- <settings enhancementEnabled="true" maxTransactions="20"
+              maxRequests="32" maxSessions="10"/> -->
+
+    <!-- Identify all SQL Map XML files to be loaded by this SQL map. Relative to classpath -->
+    <!-- add user define SQL maps-->
+	<sqlMap resource="sqlMap/AntiQueryLogSQL.xml"/>
+
+    <sqlMap resource="sqlMap/ReportInfoSQL.xml"/>
+
+    <sqlMap resource="sqlMap/SyncuserSQL.xml"/>
+
+    <sqlMap resource="sqlMap/TblmaterialSQL.xml"/>
+
+    <sqlMap resource="sqlMap/TblserialnumberSQL.xml"/>
+    
+    <sqlMap resource="sqlMap/LableSummarySQL.xml"/>
+
+    <sqlMap resource="sqlMap/LableDetailSQL.xml"/>
+    
+    <sqlMap resource="sqlMap/ProductOrderSQL.xml"/>
+
+    <sqlMap resource="sqlMap/LableOrderSQL.xml"/>
+    
+    <sqlMap resource="sqlMap/TblserialnumberHisSQL.xml"/>
+    
+	<sqlMap resource="sqlMap/LabelScrapSQL.xml"/>
+	
+	<sqlMap resource="sqlMap/TblrecipientSQL.xml"/>
+	
+	<sqlMap resource="sqlMap/KpiInfoSQL.xml"/>
+	
+	<sqlMap resource="sqlMap/SfbdSecuritySQL.xml"/>
+ </sqlMapConfig>

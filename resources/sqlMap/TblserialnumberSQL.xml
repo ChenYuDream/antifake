@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="TblserialnumberSQL">
+    <typeAlias alias="Tblserialnumber" type="com.sinosoft.antifake.ibatis.model.Tblserialnumber"/>
+    <resultMap id="TblserialnumberResult" class="Tblserialnumber">
+        <result property="snoSerialno" column="SNO_SERIALNO" jdbcType="NVARCHAR" javaType="String"/>
+        <result property="snoBarno" column="SNO_BARNO" jdbcType="NVARCHAR" javaType="String"/>
+        <result property="snoBoxno" column="SNO_BOXNO" jdbcType="NVARCHAR" javaType="String"/>
+        <result property="snoMaterial" column="SNO_MATERIAL" jdbcType="NVARCHAR" javaType="String"/>
+        <result property="snoCreatedate" column="SNO_CREATEDATE" jdbcType="DATETIME" javaType="java.util.Date"/>
+        <result property="snoDc" column="SNO_DC" jdbcType="NVARCHAR" javaType="String"/>
+        <result property="snoJv" column="SNO_JV" jdbcType="NVARCHAR" javaType="String"/>
+        <result property="snoCompany" column="SNO_COMPANY" jdbcType="NVARCHAR" javaType="String"/>
+        <result property="snoProductionline" column="SNO_PRODUCTIONLINE" jdbcType="NVARCHAR" javaType="String"/>
+        <result property="snoProductionlineno" column="SNO_PRODUCTIONLINENO" jdbcType="NVARCHAR" javaType="String"/>
+        <result property="snoWorker" column="SNO_WORKER" jdbcType="NVARCHAR" javaType="String"/>
+        <result property="snoProductionorder" column="SNO_PRODUCTIONORDER" jdbcType="NVARCHAR" javaType="String"/>
+        <result property="snoModifyuser" column="SNO_MODIFYUSER" jdbcType="NVARCHAR" javaType="String"/>
+        <result property="snoModifydate" column="SNO_MODIFYDATE" jdbcType="DATETIME" javaType="java.util.Date"/>
+        <result property="snoProductinfo" column="SNO_PRODUCTINFO" jdbcType="NVARCHAR" javaType="String"/>
+    </resultMap>
+
+    <resultMap id="TblserialnumberResultFull" class="Tblserialnumber">
+        <result property="snoSerialno" column="SNO_SERIALNO" jdbcType="NVARCHAR" javaType="String"/>
+        <result property="snoBarno" column="SNO_BARNO" jdbcType="NVARCHAR" javaType="String"/>
+        <result property="snoBoxno" column="SNO_BOXNO" jdbcType="NVARCHAR" javaType="String"/>
+        <result property="snoMaterial" column="SNO_MATERIAL" jdbcType="NVARCHAR" javaType="String"/>
+        <result property="snoCreatedate" column="SNO_CREATEDATE" jdbcType="DATETIME" javaType="java.util.Date"/>
+        <result property="snoDc" column="SNO_DC" jdbcType="NVARCHAR" javaType="String"/>
+        <result property="snoJv" column="SNO_JV" jdbcType="NVARCHAR" javaType="String"/>
+        <result property="snoCompany" column="SNO_COMPANY" jdbcType="NVARCHAR" javaType="String"/>
+        <result property="snoProductionline" column="SNO_PRODUCTIONLINE" jdbcType="NVARCHAR" javaType="String"/>
+        <result property="snoProductionlineno" column="SNO_PRODUCTIONLINENO" jdbcType="NVARCHAR" javaType="String"/>
+        <result property="snoWorker" column="SNO_WORKER" jdbcType="NVARCHAR" javaType="String"/>
+        <result property="snoProductionorder" column="SNO_PRODUCTIONORDER" jdbcType="NVARCHAR" javaType="String"/>
+        <result property="snoModifyuser" column="SNO_MODIFYUSER" jdbcType="NVARCHAR" javaType="String"/>
+        <result property="snoModifydate" column="SNO_MODIFYDATE" jdbcType="DATETIME" javaType="java.util.Date"/>
+        <result property="snoProductinfo" column="SNO_PRODUCTINFO" jdbcType="NVARCHAR" javaType="String"/>
+    </resultMap>
+
+    <insert id="addTblserialnumber" parameterClass="Tblserialnumber">
+    <![CDATA[
+        insert into 
+        TBLSERIALNUMBER (SNO_SERIALNO,SNO_BARNO,SNO_BOXNO,SNO_MATERIAL,SNO_CREATEDATE,SNO_DC,SNO_JV,SNO_COMPANY,SNO_PRODUCTIONLINE,SNO_PRODUCTIONLINENO,SNO_WORKER,SNO_PRODUCTIONORDER,SNO_MODIFYUSER,SNO_MODIFYDATE,SNO_PRODUCTINFO)
+        values (#snoSerialno#,#snoBarno#,#snoBoxno#,#snoMaterial#,#snoCreatedate#,#snoDc#,#snoJv#,#snoCompany#,#snoProductionline#,#snoProductionlineno#,#snoWorker#,#snoProductionorder#,#snoModifyuser#,#snoModifydate#,#snoProductinfo#)
+	]]>
+	</insert>
+
+	<update id="updateTblserialnumber" parameterClass="Tblserialnumber">
+        update TBLSERIALNUMBER SET
+        	SNO_SERIALNO = #snoSerialno#
+        	<isNotEmpty prepend="," property="snoBarno">
+        	     SNO_BARNO = #snoBarno#
+        	</isNotEmpty>
+        	<isNotEmpty prepend="," property="snoBoxno">
+        	     SNO_BOXNO = #snoBoxno#
+        	</isNotEmpty>
+        	<isNotEmpty prepend="," property="snoMaterial">
+        	     SNO_MATERIAL = #snoMaterial#
+        	</isNotEmpty>
+        	<isNotEmpty prepend="," property="snoCreatedate">
+        	     SNO_CREATEDATE = #snoCreatedate#
+        	</isNotEmpty>
+            <isNotEmpty prepend="," property="snoDc">
+        	     SNO_DC = #snoDc#
+        	</isNotEmpty>
+        	<isNotEmpty prepend="," property="snoJv">
+        	     SNO_JV = #snoJv#
+        	</isNotEmpty>
+        	<isNotEmpty prepend="," property="snoCompany">
+        	     SNO_COMPANY = #snoCompany#
+        	</isNotEmpty>
+        	<isNotEmpty prepend="," property="snoProductionline">
+        	     SNO_PRODUCTIONLINE = #snoProductionline#
+        	</isNotEmpty>
+        	<isNotEmpty prepend="," property="snoWorker">
+        	     SNO_WORKER = #snoWorker#
+        	</isNotEmpty>
+        	<isNotEmpty prepend="," property="snoProductionorder">
+        	     SNO_PRODUCTIONORDER = #snoProductionorder#
+        	</isNotEmpty>
+        	<isNotEmpty prepend="," property="snoModifyuser">
+        	     SNO_MODIFYUSER = #snoModifyuser#
+        	</isNotEmpty>
+        	<!-- <isNotEmpty prepend="," property="snoModifydate">
+        	     SNO_MODIFYDATE = #snoModifydate#
+        	</isNotEmpty> -->
+        	<isNotEmpty prepend="," property="snoProductinfo">
+        	    SNO_PRODUCTINFO = #snoProductinfo#
+        	</isNotEmpty>
+        where SNO_SERIALNO = #snoSerialno#
+    </update>
+
+	<delete id="removeTblserialnumber">
+    <![CDATA[
+        delete from TBLSERIALNUMBER where SNO_SERIALNO = #snoSerialno#
+    ]]>
+    </delete>
+	
+	<select id="getTblserialnumber" resultMap="TblserialnumberResult">
+    <![CDATA[
+        select SNO_SERIALNO,SNO_BARNO,SNO_BOXNO,SNO_MATERIAL,SNO_CREATEDATE,SNO_DC,SNO_JV,SNO_COMPANY,SNO_PRODUCTIONLINE,SNO_PRODUCTIONLINENO,SNO_WORKER,SNO_PRODUCTIONORDER,SNO_MODIFYUSER,SNO_MODIFYDATE,SNO_PRODUCTINFO from TBLSERIALNUMBER where SNO_SERIALNO = #snoSerialno#
+    ]]>
+    </select>
+
+	<select id="getTblserialnumbers" resultMap="TblserialnumberResult">
+    <![CDATA[
+        select * from TBLSERIALNUMBER
+    ]]>
+    </select>
+
+	<select id="getTblserialnumberByMap" resultMap="TblserialnumberResult">
+    select * from TBLSERIALNUMBER 
+    <dynamic prepend="WHERE">
+    <isNotEmpty property="magic.FIND_BY_AND">
+    <isNotEmpty prepend="AND" property="snoSerialno">
+         SNO_SERIALNO = #snoSerialno#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="snoBarno">
+         SNO_BARNO = #snoBarno#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="snoBoxno">
+         SNO_BOXNO = #snoBoxno#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="snoMaterial">
+         SNO_MATERIAL = #snoMaterial#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="snoCreatedate">
+         SNO_CREATEDATE = #snoCreatedate#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="snoDc">
+         SNO_DC = #snoDc#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="snoJv">
+         SNO_JV = #snoJv#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="snoCompany">
+         SNO_COMPANY = #snoCompany#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="snoProductionline">
+         SNO_PRODUCTIONLINE = #snoProductionline#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="snoProductionlineno">
+         SNO_PRODUCTIONLINENO = #snoProductionlineno#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="snoWorker">
+         SNO_WORKER = #snoWorker#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="snoProductionorder">
+         SNO_PRODUCTIONORDER = #snoProductionorder#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="snoModifyuser">
+         SNO_MODIFYUSER = #snoModifyuser#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="snoModifydate">
+         SNO_MODIFYDATE = #snoModifydate#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="snoProductinfo">
+         SNO_PRODUCTINFO = #snoProductinfo#
+    </isNotEmpty>
+    </isNotEmpty>
+
+    <isNotEmpty property="magic.FIND_BY_OR">
+    <isNotEmpty prepend="OR" property="snoSerialno">
+         SNO_SERIALNO = #snoSerialno#
+    </isNotEmpty>
+    <isNotEmpty prepend="OR" property="snoBarno">
+         SNO_BARNO = #snoBarno#
+    </isNotEmpty>
+    <isNotEmpty prepend="OR" property="snoBoxno">
+         SNO_BOXNO = #snoBoxno#
+    </isNotEmpty>
+    <isNotEmpty prepend="OR" property="snoMaterial">
+         SNO_MATERIAL = #snoMaterial#
+    </isNotEmpty>
+    <isNotEmpty prepend="OR" property="snoCreatedate">
+         SNO_CREATEDATE = #snoCreatedate#
+    </isNotEmpty>
+    <isNotEmpty prepend="OR" property="snoDc">
+         SNO_DC = #snoDc#
+    </isNotEmpty>
+    <isNotEmpty prepend="OR" property="snoJv">
+         SNO_JV = #snoJv#
+    </isNotEmpty>
+    <isNotEmpty prepend="OR" property="snoCompany">
+         SNO_COMPANY = #snoCompany#
+    </isNotEmpty>
+    <isNotEmpty prepend="OR" property="snoProductionline">
+         SNO_PRODUCTIONLINE = #snoProductionline#
+    </isNotEmpty>
+    <isNotEmpty prepend="OR" property="snoProductionlineno">
+         SNO_PRODUCTIONLINENO = #snoProductionlineno#
+    </isNotEmpty>
+    <isNotEmpty prepend="OR" property="snoWorker">
+         SNO_WORKER = #snoWorker#
+    </isNotEmpty>
+    <isNotEmpty prepend="OR" property="snoProductionorder">
+         SNO_PRODUCTIONORDER = #snoProductionorder#
+    </isNotEmpty>
+    <isNotEmpty prepend="OR" property="snoModifyuser">
+         SNO_MODIFYUSER = #snoModifyuser#
+    </isNotEmpty>
+    <isNotEmpty prepend="OR" property="snoModifydate">
+         SNO_MODIFYDATE = #snoModifydate#
+    </isNotEmpty>
+    <isNotEmpty prepend="OR" property="snoProductinfo">
+         SNO_PRODUCTINFO = #snoProductinfo#
+    </isNotEmpty>
+    </isNotEmpty>
+
+    <isNotEmpty property="magic.FIND_BY_LIKE">
+    <isNotEmpty prepend="AND" property="snoSerialno">
+         SNO_SERIALNO LIKE #snoSerialno#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="snoBarno">
+         SNO_BARNO LIKE #snoBarno#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="snoBoxno">
+         SNO_BOXNO LIKE #snoBoxno#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="snoMaterial">
+         SNO_MATERIAL LIKE #snoMaterial#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="snoCreatedate">
+         SNO_CREATEDATE LIKE #snoCreatedate#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="snoDc">
+         SNO_DC LIKE #snoDc#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="snoJv">
+         SNO_JV LIKE #snoJv#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="snoCompany">
+         SNO_COMPANY LIKE #snoCompany#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="snoProductionline">
+         SNO_PRODUCTIONLINE LIKE #snoProductionline#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="snoProductionlineno">
+         SNO_PRODUCTIONLINENO LIKE #snoProductionlineno#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="snoWorker">
+         SNO_WORKER LIKE #snoWorker#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="snoProductionorder">
+         SNO_PRODUCTIONORDER LIKE #snoProductionorder#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="snoModifyuser">
+         SNO_MODIFYUSER LIKE #snoModifyuser#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="snoModifydate">
+         SNO_MODIFYDATE LIKE #snoModifydate#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="snoProductinfo">
+         SNO_PRODUCTINFO LIKE #snoProductinfo#
+    </isNotEmpty>
+    </isNotEmpty>
+    </dynamic>
+	<dynamic>
+    <isNotEmpty property="magic.ORDER_BY">
+        order by $magic.ORDER_BY$
+    </isNotEmpty>
+    </dynamic>
+    </select>
+
+    <select id="getTblserialnumberFull" resultMap="TblserialnumberResultFull">
+    select * from TBLSERIALNUMBER where SNO_SERIALNO = #snoSerialno#
+    </select>
+</sqlMap>

@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>test</title>
+</head>
+<script src="http://code.jquery.com/jquery-1.5.js"></script>
+<script type="text/javascript">
+	//查询记录，验证json 可以在别的应用中被调用
+		function getProduct(lableNo) {
+			var remoteUrlPrefix = "http://192.168.90.234:8888/se-antifake";
+			var remoteUrl = remoteUrlPrefix + "/products/"+lableNo+".json"; 
+			//异常处理 TODO
+			$.getJSON(remoteUrl,function(data){
+				console.log('data'+data);
+				var queryTimes = data.queryTimes;
+				if (0 == queryTimes) {
+					$("#resultId3").html(" "+lableNo);
+					location.href = "#result_3";
+				} else if (1 == queryTimes) {
+					$("#resultId1").html(" "+lableNo);
+					location.href = "#result_1";
+				} else {
+					$("#resultId2").html(" "+lableNo);
+					$("#resultQueryId").html(" "+queryTimes);
+					location.href = "#result_2";
+				}
+			});
+		}
+		//jquery 初始化
+		$(function(){
+			//查询
+			$("#submit").click(function(){
+				var lableNo = $("#codeId").val();
+				getProduct("1");
+			});
+			//再来一个
+			$(".more").click(function(){
+				$("#codeId").val("");
+				location.href = "#query";
+			});
+		});
+</script>
+<body>
+	<input type="buttom" value="vvv" id="submit">
+</body>
+</html>

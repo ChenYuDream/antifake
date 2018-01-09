@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="TblmaterialSQL">
+    <typeAlias alias="Tblmaterial" type="com.sinosoft.antifake.ibatis.model.Tblmaterial"/>
+    <resultMap id="TblmaterialResult" class="Tblmaterial">
+        <result property="maMaterial" column="MA_MATERIAL" jdbcType="VARCHAR" javaType="String"/>
+        <result property="maAlias" column="MA_ALIAS" jdbcType="VARCHAR" javaType="String"/>
+        <result property="maDescription" column="MA_DESCRIPTION" jdbcType="VARCHAR" javaType="String"/>
+    </resultMap>
+
+    <resultMap id="TblmaterialResultFull" class="Tblmaterial">
+        <result property="maMaterial" column="MA_MATERIAL" jdbcType="VARCHAR" javaType="String"/>
+        <result property="maAlias" column="MA_ALIAS" jdbcType="VARCHAR" javaType="String"/>
+        <result property="maDescription" column="MA_DESCRIPTION" jdbcType="VARCHAR" javaType="String"/>
+    </resultMap>
+
+    <insert id="addTblmaterial" parameterClass="Tblmaterial">
+    <![CDATA[
+        insert into 
+        TBLMATERIAL (MA_MATERIAL,MA_ALIAS,MA_DESCRIPTION)
+        values (#maMaterial#,#maAlias#,#maDescription#)
+	]]>
+	</insert>
+
+	<update id="updateTblmaterial" parameterClass="Tblmaterial">
+    <![CDATA[
+        update TBLMATERIAL SET
+            MA_ALIAS = #maAlias#,MA_DESCRIPTION = #maDescription#
+        where MA_MATERIAL = #maMaterial#
+    ]]>
+    </update>
+
+	<delete id="removeTblmaterial">
+    <![CDATA[
+        delete from TBLMATERIAL where MA_MATERIAL = #maMaterial#
+    ]]>
+    </delete>
+	
+	<select id="getTblmaterial" resultMap="TblmaterialResult">
+    <![CDATA[
+        select MA_MATERIAL,MA_ALIAS,MA_DESCRIPTION from TBLMATERIAL where MA_MATERIAL = #maMaterial#
+    ]]>
+    </select>
+
+	<select id="getTblmaterials" resultMap="TblmaterialResult">
+    <![CDATA[
+        select * from TBLMATERIAL
+    ]]>
+    </select>
+
+	<select id="getTblmaterialByMap" resultMap="TblmaterialResult">
+    select * from TBLMATERIAL 
+    <dynamic prepend="WHERE">
+    <isNotEmpty property="magic.FIND_BY_AND">
+    <isNotEmpty prepend="AND" property="maMaterial">
+         MA_MATERIAL = #maMaterial#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="maAlias">
+         MA_ALIAS = #maAlias#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="maDescription">
+         MA_DESCRIPTION = #maDescription#
+    </isNotEmpty>
+    </isNotEmpty>
+
+    <isNotEmpty property="magic.FIND_BY_OR">
+    <isNotEmpty prepend="OR" property="maMaterial">
+         MA_MATERIAL = #maMaterial#
+    </isNotEmpty>
+    <isNotEmpty prepend="OR" property="maAlias">
+         MA_ALIAS = #maAlias#
+    </isNotEmpty>
+    <isNotEmpty prepend="OR" property="maDescription">
+         MA_DESCRIPTION = #maDescription#
+    </isNotEmpty>
+    </isNotEmpty>
+
+    <isNotEmpty property="magic.FIND_BY_LIKE">
+    <isNotEmpty prepend="AND" property="maMaterial">
+         MA_MATERIAL LIKE #maMaterial#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="maAlias">
+         MA_ALIAS LIKE #maAlias#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="maDescription">
+         MA_DESCRIPTION LIKE #maDescription#
+    </isNotEmpty>
+    </isNotEmpty>
+    </dynamic>
+	<dynamic>
+    <isNotEmpty property="magic.ORDER_BY">
+        order by $magic.ORDER_BY$
+    </isNotEmpty>
+    </dynamic>
+    </select>
+
+    <select id="getTblmaterialFull" resultMap="TblmaterialResultFull">
+    select * from TBLMATERIAL where MA_MATERIAL = #maMaterial#
+    </select>
+</sqlMap>

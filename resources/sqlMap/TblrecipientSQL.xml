@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="TblrecipientSQL">
+    <typeAlias alias="Tblrecipient" type="com.sinosoft.antifake.ibatis.model.Tblrecipient"/>
+    <resultMap id="TblrecipientResult" class="Tblrecipient">
+        <result property="recipientNo" column="recipient_no" jdbcType="VARCHAR" javaType="String"/>
+        <result property="recipient" column="recipient" jdbcType="VARCHAR" javaType="String"/>
+        <result property="warnValue" column="warn_value" jdbcType="INT" javaType="Integer"/>
+        <result property="usedNum" column="used_num" jdbcType="INT" javaType="Integer"/>
+        <result property="stockNum" column="stock_num" jdbcType="INT" javaType="Integer"/>
+        <result property="deleteNum" column="delete_num" jdbcType="INT" javaType="Integer"/>
+        <result property="preStatus" column="pre_status" jdbcType="INT" javaType="Integer"/>
+        <result property="plantCode" column="plant_code" jdbcType="VARCHAR" javaType="String"/>
+    </resultMap>
+
+    <resultMap id="TblrecipientResultFull" class="Tblrecipient">
+        <result property="recipientNo" column="recipient_no" jdbcType="VARCHAR" javaType="String"/>
+        <result property="recipient" column="recipient" jdbcType="VARCHAR" javaType="String"/>
+        <result property="warnValue" column="warn_value" jdbcType="INT" javaType="Integer"/>
+        <result property="usedNum" column="used_num" jdbcType="INT" javaType="Integer"/>
+        <result property="stockNum" column="stock_num" jdbcType="INT" javaType="Integer"/>
+        <result property="deleteNum" column="delete_num" jdbcType="INT" javaType="Integer"/>
+        <result property="preStatus" column="pre_status" jdbcType="INT" javaType="Integer"/>
+        <result property="plantCode" column="plant_code" jdbcType="VARCHAR" javaType="String"/>
+    </resultMap>
+
+    <insert id="addTblrecipient" parameterClass="Tblrecipient">
+    <![CDATA[
+        insert into 
+        TBLRECIPIENT (recipient_no,recipient,warn_value,used_num,stock_num,delete_num,pre_status,plant_code)
+        values (#recipientNo#,#recipient#,#warnValue#,#usedNum#,#stockNum#,#deleteNum#,#preStatus#,#plantCode#)
+	]]>
+	</insert>
+
+	<update id="updateTblrecipient" parameterClass="Tblrecipient">
+    <![CDATA[
+        update TBLRECIPIENT SET
+            recipient = #recipient#,warn_value = #warnValue#,used_num = #usedNum#,stock_num = #stockNum#,delete_num = #deleteNum#,pre_status = #preStatus#,plant_code = #plantCode#
+        where recipient_no = #recipientNo#
+    ]]>
+    </update>
+
+	<delete id="removeTblrecipient">
+    <![CDATA[
+        delete from TBLRECIPIENT where recipient_no = #recipientNo#
+    ]]>
+    </delete>
+	
+	<select id="getTblrecipient" resultMap="TblrecipientResult">
+    <![CDATA[
+        select recipient_no,recipient,warn_value,used_num,stock_num,delete_num,pre_status,plant_code from TBLRECIPIENT where recipient_no = #recipientNo#
+    ]]>
+    </select>
+
+	<select id="getTblrecipients" resultMap="TblrecipientResult">
+    <![CDATA[
+        select * from TBLRECIPIENT
+    ]]>
+    </select>
+    
+	<select id="getKPITblrecipients" resultMap="TblrecipientResult">
+    <![CDATA[
+        select * from TBLRECIPIENT where plant_code is not null
+    ]]>
+    </select>
+    
+	
+
+	<select id="getTblrecipientByMap" resultMap="TblrecipientResult">
+    select * from TBLRECIPIENT 
+    <dynamic prepend="WHERE">
+    <isNotEmpty property="magic.FIND_BY_AND">
+    <isNotEmpty prepend="AND" property="recipientNo">
+         recipient_no = #recipientNo#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="recipient">
+         recipient = #recipient#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="warnValue">
+         warn_value = #warnValue#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="usedNum">
+         used_num = #usedNum#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="stockNum">
+         stock_num = #stockNum#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="deleteNum">
+         delete_num = #deleteNum#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="preStatus">
+         pre_status = #preStatus#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="plantCode">
+         plant_code = #plantCode#
+    </isNotEmpty>
+    </isNotEmpty>
+
+    <isNotEmpty property="magic.FIND_BY_OR">
+    <isNotEmpty prepend="OR" property="recipientNo">
+         recipient_no = #recipientNo#
+    </isNotEmpty>
+    <isNotEmpty prepend="OR" property="recipient">
+         recipient = #recipient#
+    </isNotEmpty>
+    <isNotEmpty prepend="OR" property="warnValue">
+         warn_value = #warnValue#
+    </isNotEmpty>
+    <isNotEmpty prepend="OR" property="usedNum">
+         used_num = #usedNum#
+    </isNotEmpty>
+    <isNotEmpty prepend="OR" property="stockNum">
+         stock_num = #stockNum#
+    </isNotEmpty>
+    <isNotEmpty prepend="OR" property="deleteNum">
+         delete_num = #deleteNum#
+    </isNotEmpty>
+    <isNotEmpty prepend="OR" property="preStatus">
+         pre_status = #preStatus#
+    </isNotEmpty>
+    <isNotEmpty prepend="OR" property="plantCode">
+         plant_code = #plantCode#
+    </isNotEmpty>
+    </isNotEmpty>
+
+    <isNotEmpty property="magic.FIND_BY_LIKE">
+    <isNotEmpty prepend="AND" property="recipientNo">
+         recipient_no LIKE #recipientNo#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="recipient">
+         recipient LIKE #recipient#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="warnValue">
+         warn_value LIKE #warnValue#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="usedNum">
+         used_num LIKE #usedNum#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="stockNum">
+         stock_num LIKE #stockNum#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="deleteNum">
+         delete_num LIKE #deleteNum#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="preStatus">
+         pre_status LIKE #preStatus#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="plantCode">
+         plant_code LIKE #plantCode#
+    </isNotEmpty>
+    </isNotEmpty>
+    </dynamic>
+	<dynamic>
+    <isNotEmpty property="magic.ORDER_BY">
+        order by $magic.ORDER_BY$
+    </isNotEmpty>
+    </dynamic>
+    </select>
+
+    <select id="getTblrecipientFull" resultMap="TblrecipientResultFull">
+    select * from TBLRECIPIENT where recipient_no = #recipientNo#
+    </select>
+</sqlMap>

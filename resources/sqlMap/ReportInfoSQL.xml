@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="ReportInfoSQL">
+    <typeAlias alias="ReportInfo" type="com.sinosoft.antifake.ibatis.model.ReportInfo"/>
+    <resultMap id="ReportInfoResult" class="ReportInfo">
+        <result property="id" column="id" jdbcType="VARCHAR" javaType="String"/>
+        <result property="clientName" column="client_name" jdbcType="VARCHAR" javaType="String"/>
+        <result property="clientPhone" column="client_phone" jdbcType="VARCHAR" javaType="String"/>
+        <result property="salesAddress" column="sales_address" jdbcType="VARCHAR" javaType="String"/>
+        <result property="salesName" column="sales_name" jdbcType="VARCHAR" javaType="String"/>
+        <result property="salesPhone" column="sales_phone" jdbcType="VARCHAR" javaType="String"/>
+        <result property="productType" column="product_type" jdbcType="VARCHAR" javaType="String"/>
+        <result property="amount" column="amount" jdbcType="VARCHAR" javaType="String"/>
+        <result property="labelNo" column="label_no" jdbcType="VARCHAR" javaType="String"/>
+        <result property="createTime" column="create_time" jdbcType="DATETIME" javaType="java.util.Date"/>
+        <result property="materialNo" column="material_no" jdbcType="VARCHAR" javaType="String"/>
+        <result property="client" column="client" jdbcType="VARCHAR" javaType="String"/>
+        <result property="reportType" column="report_type" jdbcType="VARCHAR" javaType="String"/>
+        <result property="ip" column="ip" jdbcType="VARCHAR" javaType="String"/>
+        <result property="gpsAddress" column="gps_address" jdbcType="VARCHAR" javaType="String"/>
+        <result property="queryId" column="query_id" jdbcType="VARCHAR" javaType="String"/>
+        <result property="tamperContent" column="tamper_content" jdbcType="VARCHAR" javaType="String"/>
+        <result property="comments" column="comments" jdbcType="NTEXT" javaType="Object"/>
+    </resultMap>
+
+    <resultMap id="ReportInfoResultFull" class="ReportInfo">
+        <result property="id" column="id" jdbcType="VARCHAR" javaType="String"/>
+        <result property="clientName" column="client_name" jdbcType="VARCHAR" javaType="String"/>
+        <result property="clientPhone" column="client_phone" jdbcType="VARCHAR" javaType="String"/>
+        <result property="salesAddress" column="sales_address" jdbcType="VARCHAR" javaType="String"/>
+        <result property="salesName" column="sales_name" jdbcType="VARCHAR" javaType="String"/>
+        <result property="salesPhone" column="sales_phone" jdbcType="VARCHAR" javaType="String"/>
+        <result property="productType" column="product_type" jdbcType="VARCHAR" javaType="String"/>
+        <result property="amount" column="amount" jdbcType="VARCHAR" javaType="String"/>
+        <result property="labelNo" column="label_no" jdbcType="VARCHAR" javaType="String"/>
+        <result property="createTime" column="create_time" jdbcType="DATETIME" javaType="java.util.Date"/>
+        <result property="materialNo" column="material_no" jdbcType="VARCHAR" javaType="String"/>
+        <result property="client" column="client" jdbcType="VARCHAR" javaType="String"/>
+        <result property="reportType" column="report_type" jdbcType="VARCHAR" javaType="String"/>
+        <result property="ip" column="ip" jdbcType="VARCHAR" javaType="String"/>
+        <result property="gpsAddress" column="gps_address" jdbcType="VARCHAR" javaType="String"/>
+        <result property="queryId" column="query_id" jdbcType="VARCHAR" javaType="String"/>
+        <result property="tamperContent" column="tamper_content" jdbcType="VARCHAR" javaType="String"/>
+        <result property="comments" column="comments" jdbcType="NTEXT" javaType="Object"/>
+    </resultMap>
+
+    <insert id="addReportInfo" parameterClass="ReportInfo">
+    <![CDATA[
+        insert into 
+        REPORT_INFO (id,client_name,client_phone,sales_address,sales_name,sales_phone,product_type,amount,label_no,create_time,material_no,client,report_type,ip,gps_address,query_id,tamper_content,comments)
+        values (#id#,#clientName#,#clientPhone#,#salesAddress#,#salesName#,#salesPhone#,#productType#,#amount#,#labelNo#,#createTime#,#materialNo#,#client#,#reportType#,#ip#,#gpsAddress#,#queryId#,#tamperContent#,#comments#)
+	]]>
+	</insert>
+
+	<update id="updateReportInfo" parameterClass="ReportInfo">
+    <![CDATA[
+        update REPORT_INFO SET
+            client_name = #clientName#,client_phone = #clientPhone#,sales_address = #salesAddress#,sales_name = #salesName#,sales_phone = #salesPhone#,product_type = #productType#,amount = #amount#,label_no = #labelNo#,create_time = #createTime#,material_no = #materialNo#,client = #client#,report_type = #reportType#,ip = #ip#,gps_address = #gpsAddress#,query_id = #queryId#,tamper_content = #tamperContent#,comments = #comments#
+        where id = #id#
+    ]]>
+    </update>
+
+	<delete id="removeReportInfo">
+    <![CDATA[
+        delete from REPORT_INFO where id = #id#
+    ]]>
+    </delete>
+	
+	<select id="getReportInfo" resultMap="ReportInfoResult">
+    <![CDATA[
+        select id,client_name,client_phone,sales_address,sales_name,sales_phone,product_type,amount,label_no,create_time,material_no,client,report_type,ip,gps_address,query_id,tamper_content,comments from REPORT_INFO where id = #id#
+    ]]>
+    </select>
+
+	<select id="getReportInfos" resultMap="ReportInfoResult">
+    <![CDATA[
+        select * from REPORT_INFO
+    ]]>
+    </select>
+
+	<select id="getReportInfoByMap" resultMap="ReportInfoResult">
+    select * from REPORT_INFO 
+    <dynamic prepend="WHERE">
+    <isNotEmpty property="magic.FIND_BY_AND">
+    <isNotEmpty prepend="AND" property="id">
+         id = #id#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="clientName">
+         client_name = #clientName#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="clientPhone">
+         client_phone = #clientPhone#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="salesAddress">
+         sales_address = #salesAddress#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="salesName">
+         sales_name = #salesName#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="salesPhone">
+         sales_phone = #salesPhone#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="productType">
+         product_type = #productType#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="amount">
+         amount = #amount#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="labelNo">
+         label_no = #labelNo#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="createTime">
+         create_time = #createTime#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="materialNo">
+         material_no = #materialNo#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="client">
+         client = #client#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="reportType">
+         report_type = #reportType#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="ip">
+         ip = #ip#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="gpsAddress">
+         gps_address = #gpsAddress#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="queryId">
+         query_id = #queryId#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="tamperContent">
+         tamper_content = #tamperContent#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="comments">
+         comments = #comments#
+    </isNotEmpty>
+    </isNotEmpty>
+
+    <isNotEmpty property="magic.FIND_BY_OR">
+    <isNotEmpty prepend="OR" property="id">
+         id = #id#
+    </isNotEmpty>
+    <isNotEmpty prepend="OR" property="clientName">
+         client_name = #clientName#
+    </isNotEmpty>
+    <isNotEmpty prepend="OR" property="clientPhone">
+         client_phone = #clientPhone#
+    </isNotEmpty>
+    <isNotEmpty prepend="OR" property="salesAddress">
+         sales_address = #salesAddress#
+    </isNotEmpty>
+    <isNotEmpty prepend="OR" property="salesName">
+         sales_name = #salesName#
+    </isNotEmpty>
+    <isNotEmpty prepend="OR" property="salesPhone">
+         sales_phone = #salesPhone#
+    </isNotEmpty>
+    <isNotEmpty prepend="OR" property="productType">
+         product_type = #productType#
+    </isNotEmpty>
+    <isNotEmpty prepend="OR" property="amount">
+         amount = #amount#
+    </isNotEmpty>
+    <isNotEmpty prepend="OR" property="labelNo">
+         label_no = #labelNo#
+    </isNotEmpty>
+    <isNotEmpty prepend="OR" property="createTime">
+         create_time = #createTime#
+    </isNotEmpty>
+    <isNotEmpty prepend="OR" property="materialNo">
+         material_no = #materialNo#
+    </isNotEmpty>
+    <isNotEmpty prepend="OR" property="client">
+         client = #client#
+    </isNotEmpty>
+    <isNotEmpty prepend="OR" property="reportType">
+         report_type = #reportType#
+    </isNotEmpty>
+    <isNotEmpty prepend="OR" property="ip">
+         ip = #ip#
+    </isNotEmpty>
+    <isNotEmpty prepend="OR" property="gpsAddress">
+         gps_address = #gpsAddress#
+    </isNotEmpty>
+    <isNotEmpty prepend="OR" property="queryId">
+         query_id = #queryId#
+    </isNotEmpty>
+    <isNotEmpty prepend="OR" property="tamperContent">
+         tamper_content = #tamperContent#
+    </isNotEmpty>
+    <isNotEmpty prepend="OR" property="comments">
+         comments = #comments#
+    </isNotEmpty>
+    </isNotEmpty>
+
+    <isNotEmpty property="magic.FIND_BY_LIKE">
+    <isNotEmpty prepend="AND" property="id">
+         id LIKE #id#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="clientName">
+         client_name LIKE #clientName#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="clientPhone">
+         client_phone LIKE #clientPhone#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="salesAddress">
+         sales_address LIKE #salesAddress#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="salesName">
+         sales_name LIKE #salesName#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="salesPhone">
+         sales_phone LIKE #salesPhone#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="productType">
+         product_type LIKE #productType#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="amount">
+         amount LIKE #amount#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="labelNo">
+         label_no LIKE #labelNo#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="createTime">
+         create_time LIKE #createTime#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="materialNo">
+         material_no LIKE #materialNo#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="client">
+         client LIKE #client#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="reportType">
+         report_type LIKE #reportType#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="ip">
+         ip LIKE #ip#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="gpsAddress">
+         gps_address LIKE #gpsAddress#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="queryId">
+         query_id LIKE #queryId#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="tamperContent">
+         tamper_content LIKE #tamperContent#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="comments">
+         comments LIKE #comments#
+    </isNotEmpty>
+    </isNotEmpty>
+    </dynamic>
+	<dynamic>
+    <isNotEmpty property="magic.ORDER_BY">
+        order by $magic.ORDER_BY$
+    </isNotEmpty>
+    </dynamic>
+    </select>
+
+    <select id="getReportInfoFull" resultMap="ReportInfoResultFull">
+    select * from REPORT_INFO where id = #id#
+    </select>
+</sqlMap>

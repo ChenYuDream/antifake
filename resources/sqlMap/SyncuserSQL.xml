@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="SyncuserSQL">
+    <typeAlias alias="Syncuser" type="com.sinosoft.antifake.ibatis.model.Syncuser"/>
+    <resultMap id="SyncuserResult" class="Syncuser">
+        <result property="username" column="username" jdbcType="VARCHAR" javaType="String"/>
+        <result property="password" column="password" jdbcType="VARCHAR" javaType="String"/>
+        <result property="recipientNo" column="recipient_no" jdbcType="VARCHAR" javaType="String"/>
+    </resultMap>
+
+    <resultMap id="SyncuserResultFull" class="Syncuser">
+        <result property="username" column="username" jdbcType="VARCHAR" javaType="String"/>
+        <result property="password" column="password" jdbcType="VARCHAR" javaType="String"/>
+         <result property="recipientNo" column="recipient_no" jdbcType="VARCHAR" javaType="String"/>
+    </resultMap>
+
+    <insert id="addSyncuser" parameterClass="Syncuser">
+    <![CDATA[
+        insert into 
+        SYNCUSER (username,password)
+        values (#username#,#password#)
+	]]>
+	</insert>
+
+	<update id="updateSyncuser" parameterClass="Syncuser">
+    <![CDATA[
+        update SYNCUSER SET
+            password = #password#
+        where username = #username#
+    ]]>
+    </update>
+
+	<delete id="removeSyncuser">
+    <![CDATA[
+        delete from SYNCUSER where username = #username#
+    ]]>
+    </delete>
+	
+	<select id="getSyncuser" resultMap="SyncuserResult">
+    <![CDATA[
+        select username,password,recipient_no from SYNCUSER where username = #username#
+    ]]>
+    </select>
+
+	<select id="getSyncusers" resultMap="SyncuserResult">
+    <![CDATA[
+        select * from SYNCUSER
+    ]]>
+    </select>
+
+	<select id="getSyncuserByMap" resultMap="SyncuserResult">
+    select * from SYNCUSER 
+    <dynamic prepend="WHERE">
+    <isNotEmpty property="magic.FIND_BY_AND">
+    <isNotEmpty prepend="AND" property="username">
+         username = #username#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="password">
+         password = #password#
+    </isNotEmpty>
+    </isNotEmpty>
+
+    <isNotEmpty property="magic.FIND_BY_OR">
+    <isNotEmpty prepend="OR" property="username">
+         username = #username#
+    </isNotEmpty>
+    <isNotEmpty prepend="OR" property="password">
+         password = #password#
+    </isNotEmpty>
+    </isNotEmpty>
+
+    <isNotEmpty property="magic.FIND_BY_LIKE">
+    <isNotEmpty prepend="AND" property="username">
+         username LIKE #username#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="password">
+         password LIKE #password#
+    </isNotEmpty>
+    </isNotEmpty>
+    </dynamic>
+	<dynamic>
+    <isNotEmpty property="magic.ORDER_BY">
+        order by $magic.ORDER_BY$
+    </isNotEmpty>
+    </dynamic>
+    </select>
+
+    <select id="getSyncuserFull" resultMap="SyncuserResultFull">
+    select * from SYNCUSER where username = #username#
+    </select>
+    
+    <update id="updateUsedSerialNumberToRecipient" parameterClass="java.util.HashMap">
+        update tblRecipient set used_num = isnull(used_num,0)+#n# where recipient_no = #recipientNo#
+    </update>
+    
+    <update id="updateStockSerialNumberToRecipient" parameterClass="java.util.HashMap">
+        update tblRecipient set stock_num = isnull(stock_num,0)+#n# where recipient_no = #recipientNo#
+    </update>
+    
+    <update id="updateDeleteSerialNumberToRecipient" parameterClass="java.util.HashMap">
+        update tblRecipient set delete_num = isnull(delete_num,0)+#n# where recipient_no = #recipientNo#
+    </update>
+    
+    <update id="updateUsedSerialNumberToRecipientByDelete" parameterClass="java.util.HashMap">
+        update tblRecipient set used_num = isnull(used_num,0)-#n# where recipient_no = #recipientNo#
+    </update>
+</sqlMap>

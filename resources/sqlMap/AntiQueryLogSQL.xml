@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="AntiQueryLogSQL">
+    <typeAlias alias="AntiQueryLog" type="com.sinosoft.antifake.ibatis.model.AntiQueryLog"/>
+    <resultMap id="AntiQueryLogResult" class="AntiQueryLog">
+        <result property="id" column="id" jdbcType="VARCHAR" javaType="String"/>
+        <result property="lableNo" column="lable_no" jdbcType="VARCHAR" javaType="String"/>
+        <result property="phoneNo" column="phone_no" jdbcType="VARCHAR" javaType="String"/>
+        <result property="userName" column="user_name" jdbcType="VARCHAR" javaType="String"/>
+        <result property="queryTime" column="query_time" jdbcType="VARCHAR" javaType="String"/>
+        <result property="ip" column="ip" jdbcType="VARCHAR" javaType="String"/>
+        <result property="materialNo" column="material_no" jdbcType="VARCHAR" javaType="String"/>
+        <result property="isExist" column="is_exist" jdbcType="VARCHAR" javaType="String"/>
+        <result property="queryCount" column="query_count" jdbcType="INT" javaType="Integer"/>
+        <result property="client" column="client" jdbcType="VARCHAR" javaType="String"/>
+    </resultMap>
+
+    <resultMap id="AntiQueryLogResultFull" class="AntiQueryLog">
+        <result property="id" column="id" jdbcType="VARCHAR" javaType="String"/>
+        <result property="lableNo" column="lable_no" jdbcType="VARCHAR" javaType="String"/>
+        <result property="phoneNo" column="phone_no" jdbcType="VARCHAR" javaType="String"/>
+        <result property="userName" column="user_name" jdbcType="VARCHAR" javaType="String"/>
+        <result property="queryTime" column="query_time" jdbcType="VARCHAR" javaType="String"/>
+        <result property="ip" column="ip" jdbcType="VARCHAR" javaType="String"/>
+        <result property="materialNo" column="material_no" jdbcType="VARCHAR" javaType="String"/>
+        <result property="isExist" column="is_exist" jdbcType="VARCHAR" javaType="String"/>
+        <result property="queryCount" column="query_count" jdbcType="INT" javaType="Integer"/>
+        <result property="client" column="client" jdbcType="VARCHAR" javaType="String"/>
+    </resultMap>
+
+    <insert id="addAntiQueryLog" parameterClass="AntiQueryLog">
+    <![CDATA[
+        insert into 
+        ANTI_QUERY_LOG (id,lable_no,phone_no,user_name,query_time,ip,material_no,is_exist,query_count,client)
+        values (#id#,#lableNo#,#phoneNo#,#userName#,#queryTime#,#ip#,#materialNo#,#isExist#,#queryCount#,#client#)
+	]]>
+	</insert>
+
+	<update id="updateAntiQueryLog" parameterClass="AntiQueryLog">
+    <![CDATA[
+        update ANTI_QUERY_LOG SET
+            lable_no = #lableNo#,phone_no = #phoneNo#,user_name = #userName#,query_time = #queryTime#,ip = #ip#,material_no = #materialNo#,is_exist = #isExist#,query_count = #queryCount#,client = #client#
+        where id = #id#
+    ]]>
+    </update>
+
+	<delete id="removeAntiQueryLog">
+    <![CDATA[
+        delete from ANTI_QUERY_LOG where id = #id#
+    ]]>
+    </delete>
+	
+	<select id="getAntiQueryLog" resultMap="AntiQueryLogResult">
+    <![CDATA[
+        select id,lable_no,phone_no,user_name,query_time,ip,material_no,is_exist,query_count,client from ANTI_QUERY_LOG where id = #id#
+    ]]>
+    </select>
+
+	<select id="getAntiQueryLogs" resultMap="AntiQueryLogResult">
+    <![CDATA[
+        select * from ANTI_QUERY_LOG
+    ]]>
+    </select>
+
+	<select id="getAntiQueryLogByMap" resultMap="AntiQueryLogResult">
+    select * from ANTI_QUERY_LOG 
+    <dynamic prepend="WHERE">
+    <isNotEmpty property="magic.FIND_BY_AND">
+    <isNotEmpty prepend="AND" property="id">
+         id = #id#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="lableNo">
+         lable_no = #lableNo#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="phoneNo">
+         phone_no = #phoneNo#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="userName">
+         user_name = #userName#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="queryTime">
+         query_time = #queryTime#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="ip">
+         ip = #ip#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="materialNo">
+         material_no = #materialNo#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="isExist">
+         is_exist = #isExist#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="queryCount">
+         query_count = #queryCount#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="client">
+         client = #client#
+    </isNotEmpty>
+    </isNotEmpty>
+
+    <isNotEmpty property="magic.FIND_BY_OR">
+    <isNotEmpty prepend="OR" property="id">
+         id = #id#
+    </isNotEmpty>
+    <isNotEmpty prepend="OR" property="lableNo">
+         lable_no = #lableNo#
+    </isNotEmpty>
+    <isNotEmpty prepend="OR" property="phoneNo">
+         phone_no = #phoneNo#
+    </isNotEmpty>
+    <isNotEmpty prepend="OR" property="userName">
+         user_name = #userName#
+    </isNotEmpty>
+    <isNotEmpty prepend="OR" property="queryTime">
+         query_time = #queryTime#
+    </isNotEmpty>
+    <isNotEmpty prepend="OR" property="ip">
+         ip = #ip#
+    </isNotEmpty>
+    <isNotEmpty prepend="OR" property="materialNo">
+         material_no = #materialNo#
+    </isNotEmpty>
+    <isNotEmpty prepend="OR" property="isExist">
+         is_exist = #isExist#
+    </isNotEmpty>
+    <isNotEmpty prepend="OR" property="queryCount">
+         query_count = #queryCount#
+    </isNotEmpty>
+    <isNotEmpty prepend="OR" property="client">
+         client = #client#
+    </isNotEmpty>
+    </isNotEmpty>
+
+    <isNotEmpty property="magic.FIND_BY_LIKE">
+    <isNotEmpty prepend="AND" property="id">
+         id LIKE #id#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="lableNo">
+         lable_no LIKE #lableNo#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="phoneNo">
+         phone_no LIKE #phoneNo#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="userName">
+         user_name LIKE #userName#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="queryTime">
+         query_time LIKE #queryTime#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="ip">
+         ip LIKE #ip#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="materialNo">
+         material_no LIKE #materialNo#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="isExist">
+         is_exist LIKE #isExist#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="queryCount">
+         query_count LIKE #queryCount#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="client">
+         client LIKE #client#
+    </isNotEmpty>
+    </isNotEmpty>
+    </dynamic>
+	<dynamic>
+    <isNotEmpty property="magic.ORDER_BY">
+        order by $magic.ORDER_BY$
+    </isNotEmpty>
+    </dynamic>
+    </select>
+
+    <select id="getAntiQueryLogFull" resultMap="AntiQueryLogResultFull">
+    select * from ANTI_QUERY_LOG where id = #id#
+    </select>
+</sqlMap>

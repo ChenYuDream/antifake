@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="ProductOrderSQL">
+    <typeAlias alias="ProductOrder" type="com.sinosoft.antifake.ibatis.model.ProductOrder"/>
+    <resultMap id="ProductOrderResult" class="ProductOrder">
+        <result property="id" column="id" jdbcType="VARCHAR" javaType="String"/>
+        <result property="soNo" column="so_no" jdbcType="VARCHAR" javaType="String"/>
+        <result property="lineNo" column="line_no" jdbcType="VARCHAR" javaType="String"/>
+        <result property="plantNo" column="plant_no" jdbcType="VARCHAR" javaType="String"/>
+        <result property="materialNo" column="material_no" jdbcType="VARCHAR" javaType="String"/>
+        <result property="product" column="product" jdbcType="NVARCHAR" javaType="String"/>
+       <!--  <result property="productSize" column="product_size" jdbcType="NVARCHAR" javaType="String"/>
+        <result property="productModle" column="product_modle" jdbcType="NVARCHAR" javaType="String"/> -->
+        <result property="count" column="count" jdbcType="INT" javaType="Integer"/>
+        <result property="createTime" column="create_time" jdbcType="DATETIME" javaType="java.util.Date"/>
+        <result property="creater" column="creater" jdbcType="NVARCHAR" javaType="String"/>
+        <result property="status" column="status" jdbcType="VARCHAR" javaType="String"/>
+        <result property="productionDate" column="production_date" jdbcType="DATETIME" javaType="java.util.Date"/>
+        <result property="moNo" column="mo_no" jdbcType="VARCHAR" javaType="String"/>
+    </resultMap>
+
+    <resultMap id="ProductOrderResultFull" class="ProductOrder">
+        <result property="id" column="id" jdbcType="VARCHAR" javaType="String"/>
+        <result property="soNo" column="so_no" jdbcType="VARCHAR" javaType="String"/>
+        <result property="lineNo" column="line_no" jdbcType="VARCHAR" javaType="String"/>
+        <result property="plantNo" column="plant_no" jdbcType="VARCHAR" javaType="String"/>
+        <result property="materialNo" column="material_no" jdbcType="VARCHAR" javaType="String"/>
+        <result property="product" column="product" jdbcType="NVARCHAR" javaType="String"/>
+        <!-- <result property="productSize" column="product_size" jdbcType="NVARCHAR" javaType="String"/>
+        <result property="productModle" column="product_modle" jdbcType="NVARCHAR" javaType="String"/> -->
+        <result property="count" column="count" jdbcType="INT" javaType="Integer"/>
+        <result property="createTime" column="create_time" jdbcType="DATETIME" javaType="java.util.Date"/>
+        <result property="creater" column="creater" jdbcType="NVARCHAR" javaType="String"/>
+        <result property="status" column="status" jdbcType="VARCHAR" javaType="String"/>
+        <result property="productionDate" column="production_date" jdbcType="DATETIME" javaType="java.util.Date"/>
+        <result property="moNo" column="mo_no" jdbcType="VARCHAR" javaType="String"/>
+    </resultMap>
+
+    <insert id="addProductOrder" parameterClass="ProductOrder">
+    <![CDATA[
+        insert into 
+        PRODUCT_ORDER (id,so_no,line_no,plant_no,material_no,product,count,create_time,creater,status)
+        values (#id#,#soNo#,#lineNo#,#plantNo#,#materialNo#,#product#,#count#,#createTime#,#creater#,#status#)
+	]]>
+	</insert>
+
+	<update id="updateProductOrder" parameterClass="ProductOrder">
+    <![CDATA[
+        update PRODUCT_ORDER SET
+            so_no = #soNo#,line_no = #lineNo#,plant_no = #plantNo#,material_no = #materialNo#,product = #product#,count = #count#,create_time = #createTime#,creater = #creater#,status = #status#
+        where id = #id#
+    ]]>
+    </update>
+
+	<delete id="removeProductOrder">
+    <![CDATA[
+        delete from PRODUCT_ORDER where id = #id#
+    ]]>
+    </delete>
+	
+	<select id="getProductOrder" resultMap="ProductOrderResult">
+    <![CDATA[
+        select id,so_no,line_no,plant_no,material_no,product,count,create_time,creater,status from PRODUCT_ORDER where id = #id#
+    ]]>
+    </select>
+
+	<select id="getProductOrders" resultMap="ProductOrderResult">
+    <![CDATA[
+        select * from PRODUCT_ORDER
+    ]]>
+    </select>
+
+	<select id="getProductOrderByMap" resultMap="ProductOrderResult">
+    select * from PRODUCT_ORDER 
+    <dynamic prepend="WHERE">
+    <isNotEmpty property="magic.FIND_BY_AND">
+    <isNotEmpty prepend="AND" property="id">
+         id = #id#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="soNo">
+         so_no = #soNo#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="lineNo">
+         line_no = #lineNo#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="plantNo">
+         plant_no = #plantNo#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="materialNo">
+         material_no = #materialNo#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="product">
+         product = #product#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="count">
+         count = #count#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="createTime">
+         create_time = #createTime#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="creater">
+         creater = #creater#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="status">
+         status = #status#
+    </isNotEmpty>
+    </isNotEmpty>
+
+    <isNotEmpty property="magic.FIND_BY_OR">
+    <isNotEmpty prepend="OR" property="id">
+         id = #id#
+    </isNotEmpty>
+    <isNotEmpty prepend="OR" property="soNo">
+         so_no = #soNo#
+    </isNotEmpty>
+    <isNotEmpty prepend="OR" property="lineNo">
+         line_no = #lineNo#
+    </isNotEmpty>
+    <isNotEmpty prepend="OR" property="plantNo">
+         plant_no = #plantNo#
+    </isNotEmpty>
+    <isNotEmpty prepend="OR" property="materialNo">
+         material_no = #materialNo#
+    </isNotEmpty>
+    <isNotEmpty prepend="OR" property="product">
+         product = #product#
+    </isNotEmpty>
+    <isNotEmpty prepend="OR" property="count">
+         count = #count#
+    </isNotEmpty>
+    <isNotEmpty prepend="OR" property="createTime">
+         create_time = #createTime#
+    </isNotEmpty>
+    <isNotEmpty prepend="OR" property="creater">
+         creater = #creater#
+    </isNotEmpty>
+    <isNotEmpty prepend="OR" property="status">
+         status = #status#
+    </isNotEmpty>
+    </isNotEmpty>
+
+    <isNotEmpty property="magic.FIND_BY_LIKE">
+    <isNotEmpty prepend="AND" property="id">
+         id LIKE #id#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="soNo">
+         so_no LIKE #soNo#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="lineNo">
+         line_no LIKE #lineNo#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="plantNo">
+         plant_no LIKE #plantNo#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="materialNo">
+         material_no LIKE #materialNo#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="product">
+         product LIKE #product#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="count">
+         count LIKE #count#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="createTime">
+         create_time LIKE #createTime#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="creater">
+         creater LIKE #creater#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="status">
+         status LIKE #status#
+    </isNotEmpty>
+    </isNotEmpty>
+    </dynamic>
+	<dynamic>
+    <isNotEmpty property="magic.ORDER_BY">
+        order by $magic.ORDER_BY$
+    </isNotEmpty>
+    </dynamic>
+    </select>
+
+    <select id="getProductOrderFull" resultMap="ProductOrderResultFull">
+    select * from PRODUCT_ORDER where id = #id#
+    </select>
+    
+    <insert id="productOrderBatchInsert" parameterClass="java.util.ArrayList">
+         <![CDATA[
+        insert into 
+        PRODUCT_ORDER (id,so_no,line_no,plant_no,material_no,product,count,create_time,creater,mo_no,production_date)
+         ]]>
+        <iterate conjunction="UNION ALL">
+         <![CDATA[
+           SELECT  #list[].id#,#list[].soNo#,#list[].lineNo#,#list[].plantNo#,#list[].materialNo#,#list[].product#,#list[].count#,getDate(),#list[].creater#,#list[].moNo#,#list[].productionDate#
+         ]]>
+        </iterate>
+    </insert>
+    
+    <insert id="productOrderRestBatchInsert" parameterClass="java.util.ArrayList">
+         <![CDATA[
+        insert into 
+        PRODUCT_ORDER (id,so_no,line_no,plant_no,material_no,product,count,create_time,creater,mo_no,production_date)
+         ]]>
+        <iterate conjunction="UNION ALL">
+         <![CDATA[
+           SELECT  #list[].id#,#list[].soNo#,#list[].lineNo#,#list[].plantNo#,#list[].materialNo#,#list[].product#,#list[].count#,getDate(),#list[].creater#,#list[].moNo#,#list[].productionDate#
+         ]]>
+        </iterate>
+    </insert>
+    
+    <delete id="restRemoveProductOrder" parameterClass="java.util.HashMap">
+        delete from PRODUCT_ORDER 
+			<dynamic prepend="WHERE"> 
+			    <isNotEmpty prepend="AND" property="productionDate">
+			    	production_date = #productionDate#
+			    </isNotEmpty>   
+	         	<isNotEmpty prepend="AND" property="plantNo">
+	         	    plant_no = #plantNo#
+	         	</isNotEmpty>   
+        	</dynamic>
+    </delete>
+    
+    <insert id="productOrderRestPOBatchInsert" parameterClass="java.util.ArrayList">
+         <![CDATA[
+        insert into 
+        PRODUCT_ORDER (id,so_no,line_no,plant_no,material_no,count,create_time,production_date,mo_no)
+         ]]>
+        <iterate conjunction="UNION ALL">
+         <![CDATA[
+           SELECT  #list[].id#,#list[].soNo#,#list[].lineNo#,#list[].plantNo#,#list[].materialNo#,#list[].count#,getDate(),#list[].productionDate#,#list[].moNo:VARCHAR#
+         ]]>
+        </iterate>
+    </insert>
+    
+    <insert id="productOrderRestMOBatchInsert" parameterClass="java.util.ArrayList">
+         <![CDATA[
+        insert into 
+        PRODUCT_ORDER (id,plant_no,material_no,count,create_time,mo_no,production_date,so_no,line_no)
+         ]]>
+        <iterate conjunction="UNION ALL">
+         <![CDATA[
+           SELECT  #list[].id#,#list[].plantNo#,#list[].materialNo#,#list[].count#,getDate(),#list[].moNo#,#list[].productionDate#,#list[].soNo:VARCHAR#,#list[].lineNo:VARCHAR#
+         ]]>
+        </iterate>
+    </insert>
+    
+    <select id="KPIcount" resultClass="java.util.HashMap">
+		<!-- select 
+		plant_no,sum(count) as count,
+		so_no as id,production_date ,'1' as status 
+		from product_order
+		where so_no is not null and so_no !='' and (mo_no ='' or mo_no is null)
+		group by so_no,production_date,plant_no union all
+		select 
+		plant_no,sum(count) as count,
+		mo_no as id,production_date ,'2' as status 
+		from product_order
+		where mo_no is not null  and mo_no !=''
+		group by mo_no,production_date,plant_no  -->
+		select 
+		plant_no,sum(count) as count,
+		so_no as id ,(select top 1 aa.production_date from product_order aa where aa.so_no=b.so_no order by production_date) as production_date,'1' as status 
+		from product_order b
+		where so_no is not null and so_no !='' and (mo_no ='' or mo_no is null)
+		group by so_no,plant_no 
+		union all
+		select 
+		plant_no,sum(count) as count,
+		mo_no as id,(select top 1 bb.production_date from product_order bb where bb.mo_no=c.mo_no order by production_date) as production_date ,'2' as status 
+		from product_order c
+		where mo_no is not null  and mo_no !=''
+		group by mo_no,production_date,plant_no      
+    </select>
+    
+    <insert id="productOrderRestPOInsert" parameterClass="java.util.HashMap">
+        insert into 
+        PRODUCT_ORDER (id,so_no,line_no,plant_no,material_no,count,create_time,production_date,mo_no)
+           values(#id#,#soNo#,#lineNo#,#plantNo#,#materialNo#,#count#,getDate(),#productionDate#,#moNo:VARCHAR#)
+    </insert>
+    
+    <insert id="productOrderRestMOInsert" parameterClass="java.util.HashMap">
+        insert into 
+        PRODUCT_ORDER (id,plant_no,material_no,count,create_time,mo_no,production_date,so_no,line_no)
+        values(#id#,#plantNo#,#materialNo#,#count#,getDate(),#moNo#,#productionDate#,#soNo:VARCHAR#,#lineNo:VARCHAR#)
+    </insert>
+    
+</sqlMap>

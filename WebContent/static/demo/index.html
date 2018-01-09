@@ -1,0 +1,146 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Schneider Electric</title>
+	
+	<script src="../jquery/jquery-1.9.1.min.js"></script>
+	<script src="../jquery-mobile/jquery.mobile-1.3.1.min.js"></script>
+	<link rel="stylesheet" href="../jquery-mobile/jquery.mobile-1.3.1.min.css">
+	<link rel="stylesheet" href="../styles/jqm-demos.css">
+	
+	<style type="text/css"> 
+	    table { width:100%; align:center;}
+	    table caption { text-align:left;  }
+	    table thead th { text-align:left; border-bottom-width:1px; border-top-width:1px; background:#56A00E;}
+	    table th, td { text-align:left; padding:3px;} 
+	    tfoot td {text-align:right;background:#56A00E;}
+	    .red {color: red;} 
+	    .green {color: green;} 
+	    .box p{text-indent:2em; }
+	    .ui-header .ui-title, .ui-footer .ui-title { min-height: 1.1em; text-align: center; font-size: 16px; display: block; margin: .6em 20% .8em;  padding: 0;  text-overflow: ellipsis; overflow: hidden; white-space: nowrap; outline: 0 !important; }
+	</style>
+	<script type="text/javascript">
+		$(document).bind("mobileinit", function(){
+		  //$.mobile.touchOverflowEnabled = true;
+		  $.support.touchOverflow = true; 
+		  $.mobile.touchOverflowEnabled = true;
+		});
+		$(function(){
+			$(".to_hidden").hide();
+			
+			$("#submit").click(function(){
+				var typeValue = $("#codeId").val();
+				location.href = "index.html#result_"+typeValue;
+			});
+			
+			$(".more").click(function(){
+				location.href = "index.html#query";
+			});
+			
+			$("#change_type").change(function(){
+				var typeValue = $(this).val();
+				$(".to_hidden").hide();
+				$("#h_"+typeValue).show();
+			});
+			
+		});
+	</script>
+</head>
+<body>
+
+<!-- 查询页面 -->
+<div data-role="page" id="query">
+	<div data-role="header" data-theme="f" data-position="fixed">
+		<H1>施耐德电气防伪码查询</H1>
+		<a href="index.html#query" data-icon="home" data-iconpos="notext" data-direction="reverse">Home</a>
+	</div>
+	<div data-role="content" align="center">
+		<div data-role="fieldcontain">
+			<table border="0">
+				<tr style="padding-bottom:1px;">
+					<td><b class="red" style="padding-bottom:1px;">*</b> 防&nbsp;&nbsp;伪&nbsp;&nbsp;码：</td>
+					<td colspan="2" style="padding-bottom:1px;">
+						<input style="width:80%;" name="password" id="codeId" value="000020123312" />
+					</td>
+				</tr>
+				<tr>
+					<td></td>
+					<td colspan="2">
+						<img style="vertical-align: middle;" src="../images/question2.gif" width="18" height="14"/>
+						<a href="#popHelp" data-rel="popup" 
+							style="color:green; font-size:12px; line-height:20px; height:20px;">如何查看防伪码</a>
+						
+						<div data-role="popup" id="popHelp">
+							<a href="#" data-rel="back" data-role="button"  data-icon="delete" data-iconpos="notext" class="ui-btn-right">Close</a>	
+							<img src="../images/help.gif"/>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td><b class="red">*</b> 客户姓名：</td>
+					<td colspan="2"><input style="width:80%;" value="张三" /></td>
+				</tr>
+				<tr>
+					<td><b class="red">*</b> 联系电话：</td>
+					<td colspan="2"><input style="width:80%;" value="13801261213" /></td>
+				</tr>
+				<tr>
+					<td width="35%"><b class="red">*</b> 验&nbsp;&nbsp;证&nbsp;&nbsp;码：</td>
+					<td width="35%"><input style="width:80%;" value="P97L" /></td>
+					<td width="30%"><img style="vertical-align:middle; height:30px; width:50px;" src="../images/v_1.png" title="看不清，换一张"/></td>
+				</tr>
+				
+			</table>
+			<button value="查询" id="submit"></button>
+		</div>
+	</div>
+</div>
+	
+<!-- 结果页面 -->
+<div data-role="page"  id="result_1">
+	<div data-role="header" data-theme="f" data-position="fixed">
+		<h1>查询结果</h1>
+		<a href="index.html#query" data-icon="home" data-iconpos="notext" data-direction="reverse">Home</a>
+	</div>
+	<div class="box" data-role="content" align="left">
+		<div data-role="fieldcontain" style="line-height:24px">
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;您所查询的防伪码<b> 000020123312 </b><b class="green"> 存在，为第 1 次查询</b>。<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;如有疑问，请拨打热线 <a href="tel:4008101315" style="color:green;">4008101315</a> 咨询。
+				<button value="再查一个" class="more"></button>
+		</div>
+	</div>
+	<div align="center">建议您 <a href="#" style="color:green;">自检</a> 以获得更准确的结果</div>
+</div>
+<div data-role="page"  id="result_2">
+	<div data-role="header" data-theme="f" data-position="fixed">
+		<h1>查询结果</h1>
+		<a href="index.html#query" data-icon="home" data-iconpos="notext" data-direction="reverse">Home</a>
+	</div>
+	<div class="box" data-role="content" align="left">
+		<div data-role="fieldcontain" style="line-height:24px">
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;您所查询的防伪码<b> 000020123312 </b><b class="green"> 存在</b>，已被查询<b> 3 </b>次。<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;如有疑问，请拨打热线 <a href="tel:4008101315" style="color:green;">4008101315</a> 咨询。
+				<button value="再查一个" class="more"></button>
+		</div>
+	</div>
+	<div align="center">建议您 <a href="#" style="color:green;">自检</a> 以获得更准确的结果</div>
+</div>
+<div data-role="page"  id="result_3">
+	<div data-role="header" data-theme="f" data-position="fixed">
+		<h1>查询结果</h1>
+		<a href="index.html#query" data-icon="home" data-iconpos="notext" data-direction="reverse">Home</a>
+	</div>
+	<div class="box" data-role="content" align="left">
+		<div data-role="fieldcontain" style="line-height:24px">
+		 	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;抱歉，您所查询的防伪码<b> 000020123312 </b><b class="red"> 不存在 </b>，谨防假冒！<br>
+		 	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;如有疑问，请拨打热线 <a href="tel:4008101315" style="color:green;">4008101315</a> 协助维权。
+			<button value="再查一个" class="more"></button>
+	  </div>
+	</div>
+	<div align="center">建议您 <a href="#" style="color:green;">自检</a> 以获得更准确的结果</div>
+</div>
+
+</body>
+</html>

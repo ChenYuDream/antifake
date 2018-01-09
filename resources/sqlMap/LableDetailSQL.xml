@@ -1,0 +1,364 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="LableDetailSQL">
+    <typeAlias alias="LableDetail" type="com.sinosoft.antifake.ibatis.model.LableDetail"/>
+    <resultMap id="LableDetailResult" class="LableDetail">
+        <result property="serialNumber" column="serial_number" jdbcType="VARCHAR" javaType="String"/>
+        <result property="orderNo" column="order_no" jdbcType="VARCHAR" javaType="String"/>
+        <result property="reelNo" column="reel_no" jdbcType="VARCHAR" javaType="String"/>
+        <result property="createTime" column="create_time" jdbcType="DATETIME" javaType="java.util.Date"/>
+        <result property="creater" column="creater" jdbcType="NVARCHAR" javaType="String"/>
+        <result property="status" column="status" jdbcType="VARCHAR" javaType="String"/>
+        <result property="id" column="id" jdbcType="VARCHAR" javaType="String"/>
+        <result property="scrapType" column="scrap_type" jdbcType="VARCHAR" javaType="String"/>
+        <result property="scrapRemark" column="scrap_remark" jdbcType="NVARCHAR" javaType="String"/>
+        <result property="createTime" column="create_time" jdbcType="DATETIME" javaType="java.util.Date"/>
+        <result property="approveTime" column="approve_time" jdbcType="DATETIME" javaType="java.util.Date"/>
+    </resultMap>
+
+    <resultMap id="LableDetailResultFull" class="LableDetail">
+        <result property="serialNumber" column="serial_number" jdbcType="VARCHAR" javaType="String"/>
+        <result property="orderNo" column="order_no" jdbcType="VARCHAR" javaType="String"/>
+        <result property="reelNo" column="reel_no" jdbcType="VARCHAR" javaType="String"/>
+        <result property="createTime" column="create_time" jdbcType="DATETIME" javaType="java.util.Date"/>
+        <result property="creater" column="creater" jdbcType="NVARCHAR" javaType="String"/>
+        <result property="status" column="status" jdbcType="VARCHAR" javaType="String"/>
+        <result property="id" column="id" jdbcType="VARCHAR" javaType="String"/>
+        <result property="scrapType" column="scrap_type" jdbcType="VARCHAR" javaType="String"/>
+        <result property="scrapRemark" column="scrap_remark" jdbcType="NVARCHAR" javaType="String"/>
+        <result property="createTime" column="create_time" jdbcType="DATETIME" javaType="java.util.Date"/>
+        <result property="approveTime" column="approve_time" jdbcType="DATETIME" javaType="java.util.Date"/>
+    </resultMap>
+
+    <insert id="addLableDetail" parameterClass="LableDetail">
+    <![CDATA[
+        insert into 
+        LABLE_DETAIL (id,serial_number,order_no,reel_no,create_time,creater,status)
+        values (#id#,#serialNumber#,#orderNo#,#reelNo#,getDate(),#creater#,#status#)
+	]]>
+	</insert>
+
+	<update id="updateLableDetail" parameterClass="LableDetail">
+    <![CDATA[
+        update LABLE_DETAIL SET
+            serial_number = #serialNumber#,order_no = #orderNo#,reel_no = #reelNo#,create_time = #createTime#,creater = #creater#,status = #status#,scrap_type = #scrapType#,scrap_remark = #scrapRemark#
+        where id = #id#
+    ]]>
+    </update>
+
+	<delete id="removeLableDetail">
+    <![CDATA[
+        delete from LABLE_DETAIL where id = #id#
+    ]]>
+    </delete>
+	
+	<select id="getLableDetail" resultMap="LableDetailResult">
+    <![CDATA[
+        select serial_number,order_no,reel_no,create_time,creater,status,id,scrap_type,scrap_remark from LABLE_DETAIL where id = #id#
+    ]]>
+    </select>
+
+	<select id="getLableDetails" resultMap="LableDetailResult">
+    <![CDATA[
+        select * from LABLE_DETAIL
+    ]]>
+    </select>
+
+	<select id="getLableDetailByMap" resultMap="LableDetailResult">
+    select * from LABLE_DETAIL 
+    <dynamic prepend="WHERE">
+    <isNotEmpty property="magic.FIND_BY_AND">
+    <isNotEmpty prepend="AND" property="serialNumber">
+         serial_number = #serialNumber#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="orderNo">
+         order_no = #orderNo#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="reelNo">
+         reel_no = #reelNo#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="createTime">
+         create_time = #createTime#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="creater">
+         creater = #creater#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="status">
+         status = #status#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="id">
+         id = #id#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="scrapType">
+         scrap_type = #scraptype#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="scrapRemark">
+         scrap_remark = #scrapremark#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="approveTime">
+         approve_Time = #approveTime#
+    </isNotEmpty>
+    </isNotEmpty>
+
+    <isNotEmpty property="magic.FIND_BY_OR">
+    <isNotEmpty prepend="OR" property="serialNumber">
+         serial_number = #serialNumber#
+    </isNotEmpty>
+    <isNotEmpty prepend="OR" property="orderNo">
+         order_no = #orderNo#
+    </isNotEmpty>
+    <isNotEmpty prepend="OR" property="reelNo">
+         reel_no = #reelNo#
+    </isNotEmpty>
+    <isNotEmpty prepend="OR" property="createTime">
+         create_time = #createTime#
+    </isNotEmpty>
+    <isNotEmpty prepend="OR" property="creater">
+         creater = #creater#
+    </isNotEmpty>
+    <isNotEmpty prepend="OR" property="status">
+         status = #status#
+    </isNotEmpty>
+    <isNotEmpty prepend="OR" property="id">
+         id = #id#
+    </isNotEmpty>
+    <isNotEmpty prepend="OR" property="scrapType">
+         scrap_type = #scraptype#
+    </isNotEmpty>
+    <isNotEmpty prepend="OR" property="scrapRemark">
+         scrap_remark = #scrapremark#
+    </isNotEmpty>
+    <isNotEmpty prepend="OR" property="approveTime">
+         approve_Time = #approveTime#
+    </isNotEmpty>
+    </isNotEmpty>
+
+    <isNotEmpty property="magic.FIND_BY_LIKE">
+    <isNotEmpty prepend="AND" property="serialNumber">
+         serial_number LIKE #serialNumber#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="orderNo">
+         order_no LIKE #orderNo#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="reelNo">
+         reel_no LIKE #reelNo#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="createTime">
+         create_time LIKE #createTime#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="creater">
+         creater LIKE #creater#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="status">
+         status LIKE #status#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="id">
+         id LIKE #id#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="scrapType">
+         scrap_type LIKE #scrapType#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="scrapRemark">
+         scrap_remark LIKE #scrapRemark#
+    </isNotEmpty>
+    <isNotEmpty prepend="AND" property="approveTime">
+         approve_Time LIKE #approveTime#
+    </isNotEmpty>
+    </isNotEmpty>
+    </dynamic>
+	<dynamic>
+    <isNotEmpty property="magic.ORDER_BY">
+        order by $magic.ORDER_BY$
+    </isNotEmpty>
+    </dynamic>
+    </select>
+
+    <select id="getLableDetailFull" resultMap="LableDetailResultFull">
+    select * from LABLE_DETAIL where id = #id#
+    </select>
+    
+    <update id="addScrapData" parameterClass="LableDetail">
+    <![CDATA[
+        update LABLE_DETAIL SET
+            scrap_type = #scrapType#,scrap_remark = #scrapRemark#,scrap_time=getDate()
+        where serial_number = #serialNumber#
+    ]]>
+    </update>
+    
+    <select id="labelStateList" parameterClass="java.util.HashMap" resultClass="java.util.HashMap"><!-- 需要建工厂表（工厂名称，工厂ID） 最后以ID进行 GROUP BY-->
+		<!-- select r.recipient,count(d.id) as total,count(t.SNO_SERIALNO) as used,count(e.id) as scrap 
+		from tblRecipient r 
+		LEFT JOIN lable_summary s on r.recipient_no  = s.recipient_no
+		LEFT JOIN lable_detail d on d.order_no = s.order_no and d.reel_no = s.reel_no
+		LEFT JOIN tblSerialNumber t on t.SNO_SERIALNO = d.serial_number
+		LEFT JOIN lable_detail e on e.id = d.id and e.scrap_type is not null
+	    <dynamic prepend="WHERE">
+	         	<isNotEmpty prepend="AND" property="recipient">
+	         	    r.recipient = #recipient#
+	         	</isNotEmpty>   
+        </dynamic>
+		GROUP BY r.recipient,r.recipient_no
+		ORDER BY r.recipient_no -->
+		select recipient,recipient_no,warn_value,used_num as used,stock_num as total,delete_num as scrap from tblRecipient 
+		<dynamic prepend="WHERE">
+	         	<isNotEmpty prepend="AND" property="recipient">
+	         	    recipient = #recipient#
+	         	</isNotEmpty>   
+        </dynamic>
+        ORDER BY recipient_no
+	</select>
+	
+    <insert id="addDetailData" parameterClass="java.util.HashMap">
+      	insert into 
+        LABLE_DETAIL (id,serial_number,order_no,reel_no,create_time,creater,status)
+        values (#id#,#serialNumber#,#orderNo#,#reelNo#,getDate(),#creater#,#status#)
+	</insert> 
+    
+    <insert id="labelDetailBatchInsert" parameterClass="java.util.ArrayList">
+        <![CDATA[ 
+      insert into 
+        LABLE_DETAIL (id,serial_number,order_no,reel_no,create_time,creater,status)
+        ]]>
+      <iterate conjunction="UNION ALL" >
+           <![CDATA[ 
+          SELECT #list[].id#,#list[].serialNumber#,#list[].orderNo#,#list[].reelNo#,getDate(),#list[].creater#,#list[].status#
+          ]]>
+      </iterate>
+	</insert> 
+	<!-- KPIstatistics old SQL -->
+    <!--  select (select recipient from tblRecipient r where r.recipient_no = p.recipient_no) as recipient,
+		(select COUNT(*) from tblSerialNumber s  
+		LEFT JOIN syncUser u on u.username = s.SNO_MODIFYUSER
+		where u.recipient_no = p.recipient_no) as usedNum,
+		(select SUM(count) from product_order o where o.plant_no = p.recipient_no)as orderNum ,
+		(select COUNT(*) from  tblSerialNumber s
+		LEFT JOIN syncUser u on u.username = s.SNO_MODIFYUSER
+		where DATEDIFF ([hour], s.SNO_CREATEDATE, s.SNO_MODIFYDATE)<=24 and u.recipient_no = p.recipient_no) as hourNum
+		,recipient_no from tblRecipient p
+		group by recipient_no order by recipient_no -->
+    <select id="KPIstatistics" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+        <![CDATA[
+		 select
+		 r.recipient,
+		 r.recipient_no, 
+		 sum(p.count) as orderNum,
+		 sum(p.uploaded_count) as usedNum,
+		 sum(p.timely_count) as hourNum 
+		 from tblRecipient r left join kpi_info p on r.recipient_no = p.plant_no 
+		]]>
+		<dynamic prepend="WHERE">
+	    <isNotEmpty prepend="AND" property="productionDate">
+	         	    p.product_date 
+	         	    BETWEEN 
+	         	    	dateadd(month, datediff(month, 0, #productionDate#), 0) 
+	         	    and 
+						dateadd(ms, -3, dateadd(month, 1, dateadd(month, datediff(month, 0, #productionDate#), 0))) 
+	    </isNotEmpty>
+	    </dynamic>
+	    <![CDATA[
+		 group by  r.recipient,r.recipient_no
+		]]>   
+        <!-- <![CDATA[
+		)
+		) as usedNum,
+		(select SUM(count) from product_order o where o.plant_no = p.recipient_no
+		]]>
+	    <isNotEmpty prepend="AND" property="productionDate">
+	         	    o.production_date 
+	         	    BETWEEN 
+	         	    	dateadd(month, datediff(month, 0, #productionDate#), 0) 
+	         	    and 
+						dateadd(ms, -3, dateadd(month, 1, dateadd(month, datediff(month, 0, #productionDate#), 0))) 
+	    </isNotEmpty>   
+        <![CDATA[
+		)as orderNum ,
+		(select COUNT(*) from  tblSerialNumber s
+		where s.SNO_PRODUCTIONORDER in (select mo_no from product_order where plant_no = p.recipient_no
+		]]>
+	    <isNotEmpty prepend="AND" property="productionDate">
+	         	    production_date 
+	         	    BETWEEN 
+	         	    	dateadd(month, datediff(month, 0, #productionDate#), 0) 
+	         	    and 
+						dateadd(ms, -3, dateadd(month, 1, dateadd(month, datediff(month, 0, #productionDate#), 0))) 
+	    </isNotEmpty>   
+        <![CDATA[
+		)
+		and DATEDIFF ([hour], s.SNO_CREATEDATE, s.SNO_MODIFYDATE)<=24 ) as hourNum
+		,recipient_no from tblRecipient p
+		group by recipient_no order by recipient_no
+		]]> -->
+    </select>
+    <select id="getRecipientWarnValue" resultClass="java.lang.Integer" parameterClass="java.util.HashMap">
+        select warn_value from tblRecipient where recipient_no = #recipientNo#
+    </select>
+    <select id="KPIdetail" resultClass="java.util.HashMap" parameterClass="java.util.HashMap">
+        <![CDATA[
+        select 
+		p.spcial_no,
+		sum(p.uploaded_count)as usedNum,
+		SUM(p.count) as orderNum ,
+		sum(p.timely_count) as hourNum,
+		 CONVERT(varchar(100), p.product_date, 23) as production_date
+		 from kpi_info p 
+		where p.plant_no = #plantNo#
+		]]>
+	    <isNotEmpty prepend="AND" property="productionDate">
+	         	    p.product_date 
+	         	    BETWEEN 
+	         	    	dateadd(month, datediff(month, 0, #productionDate#), 0) 
+	         	    and 
+						dateadd(ms, -3, dateadd(month, 1, dateadd(month, datediff(month, 0, #productionDate#), 0))) 
+	    </isNotEmpty>   
+        <![CDATA[
+		GROUP BY p.spcial_no,p.plant_no,p.product_date ORDER BY p.spcial_no
+		]]>
+    </select>
+    
+    <select id="getWarnValueByRecipient" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+        select warn_value from tblRecipient where recipient = #recipient#
+    </select>
+    
+    <update id="updateWarnValue" parameterClass="java.util.HashMap">
+        update tblRecipient set warn_value = #warnValue#
+         <isNotEmpty prepend="WHERE" property="recipientNo">
+	         	    recipient_no = #recipientNo#
+	    </isNotEmpty>  
+    </update>
+    
+    <update id="apprvoeScrapDetail" parameterClass="java.util.HashMap">
+    <![CDATA[
+        update LABLE_scrap SET
+            status = #status#,approve_time=getDate()
+        where serial_number = #serialNumber#
+    ]]>
+    </update>
+    
+     <update id="batchApproveScrapDetail" parameterClass="java.util.ArrayList">
+	    <![CDATA[
+	        update LABLE_scrap SET
+	            status = '1',approve_time=getDate()
+	        where serial_number in(
+	     ]]>
+	     <iterate conjunction=",">
+	         #list[].serialNumber#
+	     </iterate> 
+	     <![CDATA[   
+	        )
+	     ]]>
+    </update>
+    
+    <!--  <select id="getTblRecipient" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+         select * from tblRecipient where recipient_no = #recipientNo#
+     </select> -->
+     
+     <update id="updatePreStatu" parameterClass="java.util.HashMap" >
+         update tblRecipient set pre_status = #preStatus# where recipient_no = #recipientNo#
+     </update>
+     
+     <select id="getAllRecipientNo" resultClass="java.util.HashMap">
+         select recipient_no from tblRecipient 
+     </select>
+     
+</sqlMap>
